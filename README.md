@@ -1,14 +1,31 @@
-# Computer Science Labs
+# Computer Engineering Labs & Courses
 
-I'm **Mohammad Alshurbaji**, a researcher and instructor. Here I share learning materials, practical exercises, and quizzes for the computer science labs I have taught.
+I’m **Mohammad Alshurbaji**, a researcher and instructor sharing practice materials from computer engineering labs I’ve taught at Khalifa University (KU), the American University of Sharjah (AUS), and Yarmouk University (YU).
 
-Explore practice labs in data science, programming, and digital systems, alongside full introductory courses in Arduino and MATLAB.
+Explore practice labs in:
+
+- **Data Science & AI**
+- **Python Programming**
+- **C Programming**
+- **C++ Programming**
+- **Digital Systems**
+
+Alongside full introductory courses in:
+
+- **Arduino**
+- **MATLAB**
+- **Deep Learning and Convolutional Neural Networks (CNNs)**
+
+Use the learning materials, practical exercises, and quizzes to reinforce classroom concepts, practice independently, and build skills for your own projects.
+
+⭐ **If you find this repository useful, give it a star!**
+
 
 ## Start here
 
 1. Open the lab you want to practise.
 2. Work through the activities and try your own examples.
-3. Try the practice quiz to check what you have learned.
+3. Try the practice quizzes to check what you have learned.
 
 # Data Science and AI
 
