@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 19 · Instruction Fine-Tuning · Quiz</title><style>
+:root{--ink:#173345;--muted:#526777;--teal:#087f83;--line:#dce5eb;--paper:#f3f6f9}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#086e88;text-underline-offset:3px}header,main,footer{max-width:1120px;margin:auto}header{padding:38px 34px 24px}main{padding:0 34px 40px}footer{padding:20px 34px 55px;color:var(--muted);font-size:14px}.eyebrow{text-transform:uppercase;font-size:13px;letter-spacing:.14em;font-weight:750;color:var(--teal)}h1{font-size:clamp(30px,4.5vw,48px);line-height:1.16;letter-spacing:-.03em;margin:.35em 0}h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:19px;margin:1.4em 0 .35em}p{margin:.6em 0 1em}nav{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0 10px}nav a,.button,button{border:1px solid #bacfd7;border-radius:7px;padding:8px 13px;background:white;color:#155565;font:inherit;font-size:14px;line-height:1.4;font-weight:600;text-decoration:none;cursor:pointer}nav a[aria-current=page]{background:#126c77;color:white;border-color:#126c77}.section{background:#fff;padding:30px;border:1px solid var(--line);border-radius:15px;margin:22px 0;scroll-margin-top:18px}.task-number{font-size:13px;text-transform:uppercase;font-weight:750;letter-spacing:.08em;color:var(--teal)}.lead{font-size:19px;max-width:900px}.meta{color:var(--muted);font-size:14px}.toc{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;padding-left:25px}.objectives{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;padding-left:23px}li{margin:7px 0}.codebar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:9px 14px;background:#e9f0f4;font-size:13px;color:#33566b;border-radius:10px 10px 0 0}.codewrap{margin:20px 0}.codebar button{padding:5px 10px;font-size:12px}pre{margin:0;padding:20px;overflow:auto;background:#122d3e;color:#ecf5f8;border-radius:0 0 10px 10px;font:14px/1.7 Consolas,"Courier New",monospace;tab-size:4}code{font-family:Consolas,"Courier New",monospace}p code,li code,figcaption code{background:#eef4f6;padding:2px 5px;border-radius:4px;font-size:.91em}pre code{background:none;padding:0}.diagram-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:24px 0}figure{margin:12px 0 24px}svg{display:block;width:100%;height:auto}figcaption{font-size:14px;line-height:1.55;color:var(--muted);padding:9px 3px 0}img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}.observe{border-left:4px solid var(--teal);padding:2px 18px;background:#f3faf9}.experiment{background:#f8f6ed;padding:3px 18px 12px;border-radius:10px}.options{list-style-type:upper-alpha}.options li{padding:7px 10px;border-bottom:1px solid var(--line)}.quizitem{margin:28px 0;padding-bottom:22px;border-bottom:1px solid var(--line)}.quizitem h2{font-size:20px}details{margin:16px 0}summary{cursor:pointer;font-weight:650}.status{font-size:13px;min-height:24px}.source-list{font-size:14px}.pill{display:inline-block;margin-right:7px;padding:3px 9px;background:#e5eff1;border-radius:20px;font-size:13px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #c77723;outline-offset:4px}@media(max-width:700px){header{padding:24px 18px 12px}main{padding:0 12px 25px}.section{padding:22px 16px}.toc,.objectives{grid-template-columns:1fr}pre{font-size:12px;padding:14px}h2{font-size:24px}}@media print{body{background:white;font-size:11pt}header,main,footer{max-width:none;padding:0}nav,button,.status{display:none}.section{border:0;border-radius:0;padding:10px 0;margin:10px 0}.task{break-before:page}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#102a3b;background:#f0f3f5;font-size:9pt}figure{break-inside:avoid}h2,h3{break-after:avoid}a{color:inherit}details{display:block}}
+</style></head><body>
+<header><a href="../../README.md">Computer Science Labs</a><p class="eyebrow">LLMs · Lab 19 · Quiz</p><h1>Instruction Fine-Tuning</h1><nav aria-label="Lab files"><a href="material.html">Material</a><a href="practice.html">Practice</a><a href="quiz-practice.html" aria-current="page">Quiz</a></nav><div id="copy-status" class="status" role="status" aria-live="polite"></div></header><main><section class="section"><p>Choose one answer for questions 1–6. Write Python code for questions 7–8.</p><article class="quizitem" id="q1"><h2>1. The input embedding and output projection share one parameter tensor. How should the optimizer account for it?</h2><ol class="options"><li>Only as a fixed constant that cannot learn.</li><li>As two independently initialized tensors.</li><li>Once per token in the input.</li><li>Once, with gradient contributions from both uses.</li></ol></article><article class="quizitem" id="q2"><h2>2. After validation changes a model to eval mode, what should the next training update do?</h2><ol class="options"><li>Call train before the update.</li><li>Remove the optimizer.</li><li>Discard all response labels.</li><li>Include test answers in the input.</li></ol></article><article class="quizitem" id="q3"><h2>3. A candidate has lower held-out teacher-forced loss but repeats characters during generation. Which statement is supported?</h2><ol class="options"><li>The observed generation must be replaced by the reference in the report.</li><li>Teacher-forced loss proves every free response is correct.</li><li>The tokenizer necessarily failed.</li><li>Reference-conditioned prediction and free generation are different measurements.</li></ol></article><article class="quizitem" id="q4"><h2>4. Which logit predicts EOS when the final valid EOS input is at position 12?</h2><ol class="options"><li>Position 13.</li><li>Position 11.</li><li>Position 12.</li><li>The first padded position.</li></ol></article><article class="quizitem" id="q5"><h2>5. Which held-out comparison controls for starting initialization?</h2><ol class="options"><li>Train two unrelated random initializations and compare different prompts.</li><li>Delete the unchanged model before collecting any baseline measurement.</li><li>Copy one initial state, train one copy, and evaluate both on the same prompts.</li><li>Compare only training loss at the final step.</li></ol></article><article class="quizitem" id="q6"><h2>6. Why save the formatter with an instruction checkpoint?</h2><ol class="options"><li>It guarantees identical results on every hardware device.</li><li>It specifies the request and response boundary expected by the weights.</li><li>It removes the need for model parameters.</li><li>It makes all outputs grammatically correct.</li></ol></article><details><summary>Shared Python setup</summary><p>Run this once in a fresh notebook before each activity. Complete and run one activity at a time.</p><p>Run setup once, then teaching tasks in order. Each practice and coding-quiz solution runs after setup alone. The core uses small offline teaching fixtures.</p><div class="codewrap"><div class="codebar"><span>Python · shared setup</span><button type="button" data-copy="setup-code">Copy code</button></div><pre><code id="setup-code">import copy, json, re, tempfile
+from pathlib import Path
+import numpy as np
+import torch
+from torch import nn
+from torch.nn import functional as F
+import matplotlib.pyplot as plt
+torch.set_num_threads(1)
+torch.manual_seed(119)
+# Fixed character vocabulary: never fitted on held-out responses.
+characters = &#x27;\n&#x27; + &#x27;&#x27;.join(chr(i) for i in range(32,127))
+char_to_id = {character:i+3 for i,character in enumerate(characters)}
+id_to_char = {value:key for key,value in char_to_id.items()}
+BOS, EOS, PAD = 1, 2, 2
+VOCAB_SIZE = len(char_to_id)+3
+instruction_rows = [
+    {&#x27;id&#x27;:&#x27;train0&#x27;,&#x27;split&#x27;:&#x27;train&#x27;,&#x27;input&#x27;:&#x27;library&#x27;,&#x27;response&#x27;:&#x27;bring a book&#x27;},
+    {&#x27;id&#x27;:&#x27;train1&#x27;,&#x27;split&#x27;:&#x27;train&#x27;,&#x27;input&#x27;:&#x27;park&#x27;,&#x27;response&#x27;:&#x27;bring water&#x27;},
+    {&#x27;id&#x27;:&#x27;train2&#x27;,&#x27;split&#x27;:&#x27;train&#x27;,&#x27;input&#x27;:&#x27;rain&#x27;,&#x27;response&#x27;:&#x27;bring an umbrella&#x27;},
+    {&#x27;id&#x27;:&#x27;train3&#x27;,&#x27;split&#x27;:&#x27;train&#x27;,&#x27;input&#x27;:&#x27;gym&#x27;,&#x27;response&#x27;:&#x27;bring a towel&#x27;},
+    {&#x27;id&#x27;:&#x27;train4&#x27;,&#x27;split&#x27;:&#x27;train&#x27;,&#x27;input&#x27;:&#x27;school&#x27;,&#x27;response&#x27;:&#x27;bring a book&#x27;},
+    {&#x27;id&#x27;:&#x27;train5&#x27;,&#x27;split&#x27;:&#x27;train&#x27;,&#x27;input&#x27;:&#x27;picnic&#x27;,&#x27;response&#x27;:&#x27;bring water&#x27;},
+    {&#x27;id&#x27;:&#x27;train6&#x27;,&#x27;split&#x27;:&#x27;train&#x27;,&#x27;input&#x27;:&#x27;showers&#x27;,&#x27;response&#x27;:&#x27;bring an umbrella&#x27;},
+    {&#x27;id&#x27;:&#x27;train7&#x27;,&#x27;split&#x27;:&#x27;train&#x27;,&#x27;input&#x27;:&#x27;swimming&#x27;,&#x27;response&#x27;:&#x27;bring a towel&#x27;},
+    {&#x27;id&#x27;:&#x27;val0&#x27;,&#x27;split&#x27;:&#x27;validation&#x27;,&#x27;input&#x27;:&#x27;reading cafe&#x27;,&#x27;response&#x27;:&#x27;bring a book&#x27;},
+    {&#x27;id&#x27;:&#x27;val1&#x27;,&#x27;split&#x27;:&#x27;validation&#x27;,&#x27;input&#x27;:&#x27;workout&#x27;,&#x27;response&#x27;:&#x27;bring a towel&#x27;},
+    {&#x27;id&#x27;:&#x27;test0&#x27;,&#x27;split&#x27;:&#x27;test&#x27;,&#x27;input&#x27;:&#x27;hot day&#x27;,&#x27;response&#x27;:&#x27;bring water&#x27;},
+    {&#x27;id&#x27;:&#x27;test1&#x27;,&#x27;split&#x27;:&#x27;test&#x27;,&#x27;input&#x27;:&#x27;wet weather&#x27;,&#x27;response&#x27;:&#x27;bring an umbrella&#x27;},
+]
+for row in instruction_rows:
+    row[&#x27;instruction&#x27;] = &#x27;name one useful item&#x27;
+    row[&#x27;group&#x27;] = row[&#x27;id&#x27;]  # Each supplied situation has one record.
+
+def encode_text(text):
+    if any(character not in char_to_id for character in text):
+        raise ValueError(&#x27;Only the declared character vocabulary is supported.&#x27;)
+    return [char_to_id[character] for character in text]
+
+def format_prompt(row):
+    return &#x27;Task: &#x27;+row[&#x27;instruction&#x27;]+&#x27;\nInput: &#x27;+row[&#x27;input&#x27;]+&#x27;\nReply: &#x27;
+
+def instruction_parts(row):
+    response = row[&#x27;response&#x27;].strip()
+    if not response:
+        raise ValueError(&#x27;A response must contain visible text.&#x27;)
+    prefix = [BOS]+encode_text(format_prompt(row))
+    target = encode_text(response)+[EOS]
+    return prefix,target
+
+def pack_instructions(rows,max_length=128):
+    if not rows:
+        raise ValueError(&#x27;Cannot collate an empty batch.&#x27;)
+    parts = [instruction_parts(row) for row in rows]
+    lengths = [len(prefix)+len(target) for prefix,target in parts]
+    if any(length&gt;max_length for length in lengths):
+        raise ValueError(&#x27;Complete response and EOS must fit; shorten or reject the record.&#x27;)
+    ids = torch.full((len(rows),max(lengths)),PAD,dtype=torch.long)
+    valid = torch.zeros_like(ids,dtype=torch.bool)
+    labels = torch.full_like(ids,-100)
+    for i,(prefix,target) in enumerate(parts):
+        sequence = prefix+target
+        ids[i,:len(sequence)] = torch.tensor(sequence)
+        valid[i,:len(sequence)] = True
+        labels[i,len(prefix):len(sequence)] = torch.tensor(target)
+    return ids,valid,labels
+# One small causal transformer block, randomly initialized: not pretrained.
+class TinyBackbone(nn.Module):
+    def __init__(self, vocabulary_size, width=24, context=32):
+        super().__init__()
+        self.token = nn.Embedding(vocabulary_size, width)
+        self.position = nn.Embedding(context, width)
+        self.norm1 = nn.LayerNorm(width)
+        self.attention = nn.MultiheadAttention(width, 4, dropout=0.1, batch_first=True)
+        self.norm2 = nn.LayerNorm(width)
+        self.ff = nn.Sequential(nn.Linear(width, width*2), nn.GELU(), nn.Linear(width*2, width))
+        self.final_norm = nn.LayerNorm(width)
+    def forward(self, ids, valid):
+        if ids.ndim != 2 or ids.shape != valid.shape or ids.shape[1] &gt; self.position.num_embeddings:
+            raise ValueError(&#x27;Invalid token shape or context length.&#x27;)
+        if not torch.all(valid.any(dim=1)):
+            raise ValueError(&#x27;Every row needs a real token.&#x27;)
+        length = ids.shape[1]
+        x = self.token(ids) + self.position(torch.arange(length, device=ids.device))[None]
+        causal = torch.triu(torch.ones(length, length, dtype=torch.bool, device=ids.device), diagonal=1)
+        normalized = self.norm1(x)
+        attended, _ = self.attention(normalized, normalized, normalized, attn_mask=causal, key_padding_mask=~valid, need_weights=False)
+        x = x + attended
+        return self.final_norm(x + self.ff(self.norm2(x)))
+
+class TinyInstructionLM(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.backbone = TinyBackbone(VOCAB_SIZE,width=24,context=128)
+        self.output = nn.Linear(24,VOCAB_SIZE,bias=False)
+        self.output.weight = self.backbone.token.weight
+    def forward(self,ids,valid):
+        return self.output(self.backbone(ids,valid))
+
+def response_loss_sum(logits,labels):
+    targets = labels[:,1:]  # The local model does not shift inside forward.
+    count = int((targets!=-100).sum())
+    if count==0:
+        raise ValueError(&#x27;No supervised next-token targets.&#x27;)
+    total = F.cross_entropy(logits[:,:-1].reshape(-1,VOCAB_SIZE),targets.reshape(-1),ignore_index=-100,reduction=&#x27;sum&#x27;)
+    return total,count
+
+def evaluate_instructions(model,rows,batch_size=2):
+    if not rows or batch_size&lt;1:
+        raise ValueError(&#x27;Need records and a positive batch size.&#x27;)
+    model.eval()
+    total,count = 0.0,0
+    with torch.no_grad():
+        for start in range(0,len(rows),batch_size):
+            ids,valid,labels = pack_instructions(rows[start:start+batch_size])
+            loss,n = response_loss_sum(model(ids,valid),labels)
+            total += float(loss)
+            count += n
+    return {&#x27;loss&#x27;:total/count,&#x27;tokens&#x27;:count,&#x27;records&#x27;:len(rows)}
+
+def generate_reply(model,row,max_new_tokens=24):
+    if max_new_tokens&lt;1:
+        raise ValueError(&#x27;Generation budget must be positive.&#x27;)
+    sequence = [BOS]+encode_text(format_prompt(row))
+    if len(sequence)&gt;=128:
+        raise ValueError(&#x27;The prompt leaves no generation space.&#x27;)
+    generated = []
+    reason = &#x27;budget&#x27;
+    model.eval()
+    with torch.no_grad():
+        for _ in range(max_new_tokens):
+            if len(sequence)&gt;=128:
+                reason=&#x27;context&#x27;
+                break
+            ids = torch.tensor([sequence])
+            scores = model(ids,torch.ones_like(ids,dtype=torch.bool))[0,-1].clone()
+            scores[0] = scores[BOS] = -torch.inf
+            next_id = int(scores.argmax())
+            sequence.append(next_id)
+            generated.append(next_id)
+            if next_id==EOS:
+                reason=&#x27;eos&#x27;
+                break
+    text = &#x27;&#x27;.join(id_to_char[token] for token in generated if token in id_to_char)
+    return {&#x27;text&#x27;:text,&#x27;token_ids&#x27;:generated,&#x27;stop&#x27;:reason}
+# Small plotting helpers display measured tensors and counts.
+def bar_plot(labels, values, title, ylabel):
+    fig, ax = plt.subplots(figsize=(7, 3.5))
+    ax.bar(labels, np.asarray(values))
+    ax.set(title=title, ylabel=ylabel)
+    if np.all(np.asarray(values)==0):
+        ax.set_ylim(0,1)
+        ax.text(0.5,0.5,&#x27;All values are zero&#x27;,transform=ax.transAxes,ha=&#x27;center&#x27;)
+    fig.tight_layout()
+    return fig
+
+def heat_plot(values, title, xlabel, ylabel, label):
+    array = values.detach().cpu().numpy() if isinstance(values, torch.Tensor) else np.asarray(values)
+    fig, ax = plt.subplots(figsize=(7, 3.5))
+    if np.any(array &lt; 0):
+        bound = max(float(np.abs(array).max()), 1e-8)
+        view = ax.imshow(array, aspect=&#x27;auto&#x27;, interpolation=&#x27;nearest&#x27;, cmap=&#x27;coolwarm&#x27;, vmin=-bound, vmax=bound)
+    else:
+        view = ax.imshow(array, aspect=&#x27;auto&#x27;, interpolation=&#x27;nearest&#x27;, cmap=&#x27;viridis&#x27;, vmin=0, vmax=max(float(array.max()),1e-8))
+    ax.set_xticks(np.unique(np.linspace(0,array.shape[1]-1,min(8,array.shape[1])).astype(int)))
+    ax.set_yticks(np.unique(np.linspace(0,array.shape[0]-1,min(8,array.shape[0])).astype(int)))
+    ax.set(title=title, xlabel=xlabel, ylabel=ylabel)
+    fig.colorbar(view, ax=ax, label=label)
+    fig.tight_layout()
+    return fig</code></pre></div></details><article class="quizitem" id="q7"><h2>7. Create TinyInstructionLM and collate instruction_rows[:2]. In eval mode with no_grad, compute summed response loss and count using response_loss_sum. Independently flatten logits[:,:-1] and labels[:,1:] into cross_entropy with ignore_index=-100 and reduction=&quot;sum&quot;. Store same_sum using torch.allclose and mean_loss as a Python float.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q7-code">Copy code</button></div><pre><code id="q7-code"># Write a complete solution after setup.</code></pre></div></article><article class="quizitem" id="q8"><h2>8. Create a fresh TinyInstructionLM and generate a response for instruction_rows[0] with a maximum of five new tokens. Store result. Set within_budget from the output token count and clean_ids true when neither reserved ID 0 nor BOS appears among generated IDs. Set valid_stop for the allowed stop reasons eos,budget,context.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q8-code">Copy code</button></div><pre><code id="q8-code"># Write a complete solution after setup.</code></pre></div></article></section></main><footer>Mohammad Alshurbaji · LLMs · Lab 19</footer><script>document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const source=document.getElementById(b.dataset.copy);try{await navigator.clipboard.writeText(source.textContent);b.textContent='Copied';setTimeout(()=>b.textContent='Copy code',1400)}catch(_){const r=document.createRange();r.selectNodeContents(source);const s=window.getSelection();s.removeAllRanges();s.addRange(r);document.getElementById('copy-status').textContent='Code selected. Press Ctrl+C (or Command+C) to copy.'}});</script></body></html>

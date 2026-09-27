@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 17 · Fine-Tuning and Classification Evaluation · Quiz</title><style>
+:root{--ink:#173345;--muted:#526777;--teal:#087f83;--line:#dce5eb;--paper:#f3f6f9}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#086e88;text-underline-offset:3px}header,main,footer{max-width:1120px;margin:auto}header{padding:38px 34px 24px}main{padding:0 34px 40px}footer{padding:20px 34px 55px;color:var(--muted);font-size:14px}.eyebrow{text-transform:uppercase;font-size:13px;letter-spacing:.14em;font-weight:750;color:var(--teal)}h1{font-size:clamp(30px,4.5vw,48px);line-height:1.16;letter-spacing:-.03em;margin:.35em 0}h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:19px;margin:1.4em 0 .35em}p{margin:.6em 0 1em}nav{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0 10px}nav a,.button,button{border:1px solid #bacfd7;border-radius:7px;padding:8px 13px;background:white;color:#155565;font:inherit;font-size:14px;line-height:1.4;font-weight:600;text-decoration:none;cursor:pointer}nav a[aria-current=page]{background:#126c77;color:white;border-color:#126c77}.section{background:#fff;padding:30px;border:1px solid var(--line);border-radius:15px;margin:22px 0;scroll-margin-top:18px}.task-number{font-size:13px;text-transform:uppercase;font-weight:750;letter-spacing:.08em;color:var(--teal)}.lead{font-size:19px;max-width:900px}.meta{color:var(--muted);font-size:14px}.toc{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;padding-left:25px}.objectives{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;padding-left:23px}li{margin:7px 0}.codebar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:9px 14px;background:#e9f0f4;font-size:13px;color:#33566b;border-radius:10px 10px 0 0}.codewrap{margin:20px 0}.codebar button{padding:5px 10px;font-size:12px}pre{margin:0;padding:20px;overflow:auto;background:#122d3e;color:#ecf5f8;border-radius:0 0 10px 10px;font:14px/1.7 Consolas,"Courier New",monospace;tab-size:4}code{font-family:Consolas,"Courier New",monospace}p code,li code,figcaption code{background:#eef4f6;padding:2px 5px;border-radius:4px;font-size:.91em}pre code{background:none;padding:0}.diagram-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:24px 0}figure{margin:12px 0 24px}svg{display:block;width:100%;height:auto}figcaption{font-size:14px;line-height:1.55;color:var(--muted);padding:9px 3px 0}img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}.observe{border-left:4px solid var(--teal);padding:2px 18px;background:#f3faf9}.experiment{background:#f8f6ed;padding:3px 18px 12px;border-radius:10px}.options{list-style-type:upper-alpha}.options li{padding:7px 10px;border-bottom:1px solid var(--line)}.quizitem{margin:28px 0;padding-bottom:22px;border-bottom:1px solid var(--line)}.quizitem h2{font-size:20px}details{margin:16px 0}summary{cursor:pointer;font-weight:650}.status{font-size:13px;min-height:24px}.source-list{font-size:14px}.pill{display:inline-block;margin-right:7px;padding:3px 9px;background:#e5eff1;border-radius:20px;font-size:13px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #c77723;outline-offset:4px}@media(max-width:700px){header{padding:24px 18px 12px}main{padding:0 12px 25px}.section{padding:22px 16px}.toc,.objectives{grid-template-columns:1fr}pre{font-size:12px;padding:14px}h2{font-size:24px}}@media print{body{background:white;font-size:11pt}header,main,footer{max-width:none;padding:0}nav,button,.status{display:none}.section{border:0;border-radius:0;padding:10px 0;margin:10px 0}.task{break-before:page}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#102a3b;background:#f0f3f5;font-size:9pt}figure{break-inside:avoid}h2,h3{break-after:avoid}a{color:inherit}details{display:block}}
+</style></head><body>
+<header><a href="../../README.md">Computer Science Labs</a><p class="eyebrow">LLMs · Lab 17 · Quiz</p><h1>Fine-Tuning and Classification Evaluation</h1><nav aria-label="Lab files"><a href="material.html">Material</a><a href="practice.html">Practice</a><a href="quiz-practice.html" aria-current="page">Quiz</a></nav><div id="copy-status" class="status" role="status" aria-live="polite"></div></header><main><section class="section"><p>Choose one answer for questions 1–6. Write Python code for questions 7–8.</p><article class="quizitem" id="q1"><h2>1. A final batch contains one example while another contains three. Which loss aggregation gives each message equal weight?</h2><ol class="options"><li>Average the two batch means equally.</li><li>Weight the short batch three times more.</li><li>Discard the short batch.</li><li>Sum per-example losses and divide by four.</li></ol></article><article class="quizitem" id="q2"><h2>2. Training loss falls while held-out loss rises. Which conclusion is supported?</h2><ol class="options"><li>The test set should be added to training immediately.</li><li>The observed training gain does not establish held-out improvement.</li><li>All new requests are now safer to classify.</li><li>The held-out labels must be wrong.</li></ol></article><article class="quizitem" id="q3"><h2>3. A confusion matrix uses true rows and predicted columns. Cell [1,0] means what under reserve=0,cancel=1?</h2><ol class="options"><li>A cancellation predicted as a reservation.</li><li>A reservation predicted as a cancellation.</li><li>An ignored padding token.</li><li>A correct reservation.</li></ol></article><article class="quizitem" id="q4"><h2>4. Before and after models are evaluated on different requests. What is lost?</h2><ol class="options"><li>The ability to compute logits.</li><li>The vocabulary length.</li><li>A controlled paired comparison on the same examples.</li><li>The existence of training gradients.</li></ol></article><article class="quizitem" id="q5"><h2>5. Which artifact is necessary in addition to model tensors to interpret class outputs?</h2><ol class="options"><li>The class mapping and input preparation contract.</li><li>Only the final accuracy value.</li><li>The color of the training-loss plot.</li><li>A new random vocabulary every run.</li></ol></article><article class="quizitem" id="q6"><h2>6. A model scores one request at softmax 0.99. What is justified by that number alone?</h2><ol class="options"><li>The request must be correctly classified.</li><li>It assigned a high normalized score under its current parameters.</li><li>It has a 99 percent deployment success rate.</li><li>The model understands every wording of the request.</li></ol></article><details><summary>Shared Python setup</summary><p>Run this once in a fresh notebook before each activity. Complete and run one activity at a time.</p><p>Run setup once, then teaching tasks in order. Each practice and coding-quiz solution runs after setup alone. The core uses small offline teaching fixtures.</p><div class="codewrap"><div class="codebar"><span>Python · shared setup</span><button type="button" data-copy="setup-code">Copy code</button></div><pre><code id="setup-code">import copy, json, re, tempfile
+from pathlib import Path
+import numpy as np
+import torch
+from torch import nn
+from torch.nn import functional as F
+import matplotlib.pyplot as plt
+torch.set_num_threads(1)
+torch.manual_seed(117)
+# Each pair describes the same room request; group before splitting.
+pairs = [
+    (0, (&#x27;reserve a quiet room&#x27;, &#x27;please reserve the quiet room&#x27;)),
+    (1, (&#x27;cancel my quiet room&#x27;, &#x27;please cancel the quiet room&#x27;)),
+    (0, (&#x27;reserve a large room&#x27;, &#x27;please reserve the large room&#x27;)),
+    (1, (&#x27;cancel my large room&#x27;, &#x27;please cancel the large room&#x27;)),
+    (0, (&#x27;reserve a room today&#x27;, &#x27;please reserve my room today&#x27;)),
+    (1, (&#x27;cancel a room today&#x27;, &#x27;please cancel my room today&#x27;)),
+    (0, (&#x27;reserve the room tomorrow&#x27;, &#x27;please reserve a room tomorrow&#x27;)),
+    (1, (&#x27;cancel the room tomorrow&#x27;, &#x27;please cancel a room tomorrow&#x27;)),
+    (0, (&#x27;reserve a sunny room&#x27;, &#x27;please reserve the sunny room&#x27;)),
+    (1, (&#x27;cancel my sunny room&#x27;, &#x27;please cancel the sunny room&#x27;)),
+    (0, (&#x27;reserve a corner room&#x27;, &#x27;please reserve the corner room&#x27;)),
+    (1, (&#x27;cancel my corner room&#x27;, &#x27;please cancel the corner room&#x27;)),
+]
+records = [dict(id=f&#x27;g{g}_v{v}&#x27;, group=g, text=text, label=label)
+           for g, (label, texts) in enumerate(pairs) for v, text in enumerate(texts)]
+split_groups = {&#x27;train&#x27;: set(range(8)), &#x27;validation&#x27;: {8, 9}, &#x27;test&#x27;: {10, 11}}
+def words(text):
+    return re.findall(r&quot;[a-z]+&quot;, text.lower())
+# Vocabulary is fitted on training records only; IDs 0/1 mean PAD/UNK.
+training_words = sorted({word for r in records if r[&#x27;group&#x27;] in split_groups[&#x27;train&#x27;] for word in words(r[&#x27;text&#x27;])})
+vocab = {&#x27;&lt;pad&gt;&#x27;: 0, &#x27;&lt;unk&gt;&#x27;: 1, **{word: i+2 for i, word in enumerate(training_words)}}
+def encode(text, limit=12):
+    ids = [vocab.get(word, 1) for word in words(text)][:limit]
+    if not ids:
+        raise ValueError(&#x27;A message must contain at least one token.&#x27;)
+    return ids
+
+def make_batch(rows, limit=12):
+    if not rows:
+        raise ValueError(&#x27;Cannot collate an empty batch.&#x27;)
+    sequences = [encode(r[&#x27;text&#x27;], limit) for r in rows]
+    lengths = torch.tensor([len(s) for s in sequences], dtype=torch.long)
+    ids = torch.zeros((len(rows), int(lengths.max())), dtype=torch.long)
+    for i, sequence in enumerate(sequences):
+        ids[i, :len(sequence)] = torch.tensor(sequence)
+    valid = torch.arange(ids.shape[1])[None, :] &lt; lengths[:, None]
+    labels = torch.tensor([r[&#x27;label&#x27;] for r in rows], dtype=torch.long)
+    return ids, valid, labels
+# One small causal transformer block, randomly initialized: not pretrained.
+class TinyBackbone(nn.Module):
+    def __init__(self, vocabulary_size, width=24, context=32):
+        super().__init__()
+        self.token = nn.Embedding(vocabulary_size, width)
+        self.position = nn.Embedding(context, width)
+        self.norm1 = nn.LayerNorm(width)
+        self.attention = nn.MultiheadAttention(width, 4, dropout=0.1, batch_first=True)
+        self.norm2 = nn.LayerNorm(width)
+        self.ff = nn.Sequential(nn.Linear(width, width*2), nn.GELU(), nn.Linear(width*2, width))
+        self.final_norm = nn.LayerNorm(width)
+    def forward(self, ids, valid):
+        if ids.ndim != 2 or ids.shape != valid.shape or ids.shape[1] &gt; self.position.num_embeddings:
+            raise ValueError(&#x27;Invalid token shape or context length.&#x27;)
+        if not torch.all(valid.any(dim=1)):
+            raise ValueError(&#x27;Every row needs a real token.&#x27;)
+        length = ids.shape[1]
+        x = self.token(ids) + self.position(torch.arange(length, device=ids.device))[None]
+        causal = torch.triu(torch.ones(length, length, dtype=torch.bool, device=ids.device), diagonal=1)
+        normalized = self.norm1(x)
+        attended, _ = self.attention(normalized, normalized, normalized, attn_mask=causal, key_padding_mask=~valid, need_weights=False)
+        x = x + attended
+        return self.final_norm(x + self.ff(self.norm2(x)))
+
+class TinyClassifier(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.backbone = TinyBackbone(len(vocab))
+        self.head = nn.Linear(24, 2)
+    def forward(self, ids, valid):
+        hidden = self.backbone(ids, valid)
+        last = valid.sum(dim=1) - 1  # Right padding, never select a padded position.
+        pooled = hidden[torch.arange(ids.shape[0], device=ids.device), last]
+        return self.head(pooled)
+# Example-weighted evaluation covers the full declared record list.
+def evaluate_classifier(model, rows, batch_size=3):
+    if not rows or batch_size &lt; 1:
+        raise ValueError(&#x27;Require examples and positive batch size.&#x27;)
+    model.eval()
+    loss_sum, count, correct = 0.0, 0, 0
+    all_logits, all_labels = [], []
+    with torch.no_grad():
+        for start in range(0,len(rows),batch_size):
+            ids,valid,labels = make_batch(rows[start:start+batch_size])
+            logits = model(ids,valid)
+            loss_sum += float(F.cross_entropy(logits,labels,reduction=&#x27;sum&#x27;))
+            count += len(labels)
+            correct += int((logits.argmax(1)==labels).sum())
+            all_logits.append(logits)
+            all_labels.append(labels)
+    return {&#x27;loss&#x27;:loss_sum/count,&#x27;accuracy&#x27;:correct/count,&#x27;count&#x27;:count,
+            &#x27;logits&#x27;:torch.cat(all_logits),&#x27;labels&#x27;:torch.cat(all_labels)}
+# Small plotting helpers display measured tensors and counts.
+def bar_plot(labels, values, title, ylabel):
+    fig, ax = plt.subplots(figsize=(7, 3.5))
+    ax.bar(labels, np.asarray(values))
+    ax.set(title=title, ylabel=ylabel)
+    if np.all(np.asarray(values)==0):
+        ax.set_ylim(0,1)
+        ax.text(0.5,0.5,&#x27;All values are zero&#x27;,transform=ax.transAxes,ha=&#x27;center&#x27;)
+    fig.tight_layout()
+    return fig
+
+def heat_plot(values, title, xlabel, ylabel, label):
+    array = values.detach().cpu().numpy() if isinstance(values, torch.Tensor) else np.asarray(values)
+    fig, ax = plt.subplots(figsize=(7, 3.5))
+    if np.any(array &lt; 0):
+        bound = max(float(np.abs(array).max()), 1e-8)
+        view = ax.imshow(array, aspect=&#x27;auto&#x27;, interpolation=&#x27;nearest&#x27;, cmap=&#x27;coolwarm&#x27;, vmin=-bound, vmax=bound)
+    else:
+        view = ax.imshow(array, aspect=&#x27;auto&#x27;, interpolation=&#x27;nearest&#x27;, cmap=&#x27;viridis&#x27;, vmin=0, vmax=max(float(array.max()),1e-8))
+    ax.set_xticks(np.unique(np.linspace(0,array.shape[1]-1,min(8,array.shape[1])).astype(int)))
+    ax.set_yticks(np.unique(np.linspace(0,array.shape[0]-1,min(8,array.shape[0])).astype(int)))
+    ax.set(title=title, xlabel=xlabel, ylabel=ylabel)
+    fig.colorbar(view, ax=ax, label=label)
+    fig.tight_layout()
+    return fig</code></pre></div></details><article class="quizitem" id="q7"><h2>7. Write summarize(losses,correct) for equally long nonempty lists of per-example losses and boolean correctness. Raise ValueError for empty input or unequal lengths. Return mean_loss and accuracy. Use losses [0.2,0.8,0.5] and correct [True,False,True] as result.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q7-code">Copy code</button></div><pre><code id="q7-code"># Write a complete solution after setup.</code></pre></div></article><article class="quizitem" id="q8"><h2>8. Given true [0,0,1,1,1], before [0,1,1,0,1], and after [0,0,0,1,1], build before_confusion and after_confusion as 2x2 counts with true rows. Store improved_count and worsened_count from paired correctness.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q8-code">Copy code</button></div><pre><code id="q8-code"># Write a complete solution after setup.</code></pre></div></article></section></main><footer>Mohammad Alshurbaji · LLMs · Lab 17</footer><script>document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const source=document.getElementById(b.dataset.copy);try{await navigator.clipboard.writeText(source.textContent);b.textContent='Copied';setTimeout(()=>b.textContent='Copy code',1400)}catch(_){const r=document.createRange();r.selectNodeContents(source);const s=window.getSelection();s.removeAllRanges();s.addRange(r);document.getElementById('copy-status').textContent='Code selected. Press Ctrl+C (or Command+C) to copy.'}});</script></body></html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 15 · Classification Data and Batching · Quiz</title><style>
+:root{--ink:#173345;--muted:#526777;--teal:#087f83;--line:#dce5eb;--paper:#f3f6f9}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#086e88;text-underline-offset:3px}header,main,footer{max-width:1120px;margin:auto}header{padding:38px 34px 24px}main{padding:0 34px 40px}footer{padding:20px 34px 55px;color:var(--muted);font-size:14px}.eyebrow{text-transform:uppercase;font-size:13px;letter-spacing:.14em;font-weight:750;color:var(--teal)}h1{font-size:clamp(30px,4.5vw,48px);line-height:1.16;letter-spacing:-.03em;margin:.35em 0}h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:19px;margin:1.4em 0 .35em}p{margin:.6em 0 1em}nav{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0 10px}nav a,.button,button{border:1px solid #bacfd7;border-radius:7px;padding:8px 13px;background:white;color:#155565;font:inherit;font-size:14px;line-height:1.4;font-weight:600;text-decoration:none;cursor:pointer}nav a[aria-current=page]{background:#126c77;color:white;border-color:#126c77}.section{background:#fff;padding:30px;border:1px solid var(--line);border-radius:15px;margin:22px 0;scroll-margin-top:18px}.task-number{font-size:13px;text-transform:uppercase;font-weight:750;letter-spacing:.08em;color:var(--teal)}.lead{font-size:19px;max-width:900px}.meta{color:var(--muted);font-size:14px}.toc{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;padding-left:25px}.objectives{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;padding-left:23px}li{margin:7px 0}.codebar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:9px 14px;background:#e9f0f4;font-size:13px;color:#33566b;border-radius:10px 10px 0 0}.codewrap{margin:20px 0}.codebar button{padding:5px 10px;font-size:12px}pre{margin:0;padding:20px;overflow:auto;background:#122d3e;color:#ecf5f8;border-radius:0 0 10px 10px;font:14px/1.7 Consolas,"Courier New",monospace;tab-size:4}code{font-family:Consolas,"Courier New",monospace}p code,li code,figcaption code{background:#eef4f6;padding:2px 5px;border-radius:4px;font-size:.91em}pre code{background:none;padding:0}.diagram-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:24px 0}figure{margin:12px 0 24px}svg{display:block;width:100%;height:auto}figcaption{font-size:14px;line-height:1.55;color:var(--muted);padding:9px 3px 0}img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}.observe{border-left:4px solid var(--teal);padding:2px 18px;background:#f3faf9}.experiment{background:#f8f6ed;padding:3px 18px 12px;border-radius:10px}.options{list-style-type:upper-alpha}.options li{padding:7px 10px;border-bottom:1px solid var(--line)}.quizitem{margin:28px 0;padding-bottom:22px;border-bottom:1px solid var(--line)}.quizitem h2{font-size:20px}details{margin:16px 0}summary{cursor:pointer;font-weight:650}.status{font-size:13px;min-height:24px}.source-list{font-size:14px}.pill{display:inline-block;margin-right:7px;padding:3px 9px;background:#e5eff1;border-radius:20px;font-size:13px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #c77723;outline-offset:4px}@media(max-width:700px){header{padding:24px 18px 12px}main{padding:0 12px 25px}.section{padding:22px 16px}.toc,.objectives{grid-template-columns:1fr}pre{font-size:12px;padding:14px}h2{font-size:24px}}@media print{body{background:white;font-size:11pt}header,main,footer{max-width:none;padding:0}nav,button,.status{display:none}.section{border:0;border-radius:0;padding:10px 0;margin:10px 0}.task{break-before:page}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#102a3b;background:#f0f3f5;font-size:9pt}figure{break-inside:avoid}h2,h3{break-after:avoid}a{color:inherit}details{display:block}}
+</style></head><body>
+<header><a href="../../README.md">Computer Science Labs</a><p class="eyebrow">LLMs · Lab 15 · Quiz</p><h1>Classification Data and Batching</h1><nav aria-label="Lab files"><a href="material.html">Material</a><a href="practice.html">Practice</a><a href="quiz-practice.html" aria-current="page">Quiz</a></nav><div id="copy-status" class="status" role="status" aria-live="polite"></div></header><main><section class="section"><p>Choose one answer for questions 1–6. Write Python code for questions 7–8.</p><article class="quizitem" id="q1"><h2>1. Two rewordings of one room request have different record IDs. Which split decision preserves request independence?</h2><ol class="options"><li>Keep both in one group split.</li><li>Treat different IDs as proof of independence.</li><li>Put the longer one in test.</li><li>Split by the parity of token count.</li></ol></article><article class="quizitem" id="q2"><h2>2. A frozen training vocabulary maps sunny to UNK in validation. Which action follows the declared evaluation contract?</h2><ol class="options"><li>Remove all padded tokens from the vocabulary.</li><li>Fit a replacement vocabulary on validation.</li><li>Keep the mapping and record the unknown occurrence.</li><li>Change the class label to UNK.</li></ol></article><article class="quizitem" id="q3"><h2>3. A message has three real tokens and is right-padded to width seven. Which position indexes its last real token?</h2><ol class="options"><li>3</li><li>6</li><li>7</li><li>2</li></ol></article><article class="quizitem" id="q4"><h2>4. A five-example evaluation subset uses batch size three with drop_last=False. How many examples should contribute to the result?</h2><ol class="options"><li>Five</li><li>Three</li><li>Two</li><li>Six</li></ol></article><article class="quizitem" id="q5"><h2>5. A prefix limit removes the word cancel from a request labeled cancel. What should be reviewed?</h2><ol class="options"><li>Whether padding can recreate the missing action.</li><li>Whether the class ID should equal the token length.</li><li>Whether a larger token ID means stronger evidence.</li><li>Whether the remaining text still supports its label.</li></ol></article><article class="quizitem" id="q6"><h2>6. Which tensor shape fits class targets for a batch of four messages, each padded to nine tokens?</h2><ol class="options"><li>(4,9) with next-word IDs</li><li>(4,)</li><li>(4,9,2)</li><li>(9,)</li></ol></article><details><summary>Shared Python setup</summary><p>Run this once in a fresh notebook before each activity. Complete and run one activity at a time.</p><p>Run setup once, then teaching tasks in order. Each practice and coding-quiz solution runs after setup alone. The core uses small offline teaching fixtures.</p><div class="codewrap"><div class="codebar"><span>Python · shared setup</span><button type="button" data-copy="setup-code">Copy code</button></div><pre><code id="setup-code">import copy, json, re, tempfile
+from pathlib import Path
+import numpy as np
+import torch
+from torch import nn
+from torch.nn import functional as F
+import matplotlib.pyplot as plt
+torch.set_num_threads(1)
+torch.manual_seed(115)
+# Each pair describes the same room request; group before splitting.
+pairs = [
+    (0, (&#x27;reserve a quiet room&#x27;, &#x27;please reserve the quiet room&#x27;)),
+    (1, (&#x27;cancel my quiet room&#x27;, &#x27;please cancel the quiet room&#x27;)),
+    (0, (&#x27;reserve a large room&#x27;, &#x27;please reserve the large room&#x27;)),
+    (1, (&#x27;cancel my large room&#x27;, &#x27;please cancel the large room&#x27;)),
+    (0, (&#x27;reserve a room today&#x27;, &#x27;please reserve my room today&#x27;)),
+    (1, (&#x27;cancel a room today&#x27;, &#x27;please cancel my room today&#x27;)),
+    (0, (&#x27;reserve the room tomorrow&#x27;, &#x27;please reserve a room tomorrow&#x27;)),
+    (1, (&#x27;cancel the room tomorrow&#x27;, &#x27;please cancel a room tomorrow&#x27;)),
+    (0, (&#x27;reserve a sunny room&#x27;, &#x27;please reserve the sunny room&#x27;)),
+    (1, (&#x27;cancel my sunny room&#x27;, &#x27;please cancel the sunny room&#x27;)),
+    (0, (&#x27;reserve a corner room&#x27;, &#x27;please reserve the corner room&#x27;)),
+    (1, (&#x27;cancel my corner room&#x27;, &#x27;please cancel the corner room&#x27;)),
+]
+records = [dict(id=f&#x27;g{g}_v{v}&#x27;, group=g, text=text, label=label)
+           for g, (label, texts) in enumerate(pairs) for v, text in enumerate(texts)]
+split_groups = {&#x27;train&#x27;: set(range(8)), &#x27;validation&#x27;: {8, 9}, &#x27;test&#x27;: {10, 11}}
+def words(text):
+    return re.findall(r&quot;[a-z]+&quot;, text.lower())
+# Small plotting helpers display measured tensors and counts.
+def bar_plot(labels, values, title, ylabel):
+    fig, ax = plt.subplots(figsize=(7, 3.5))
+    ax.bar(labels, np.asarray(values))
+    ax.set(title=title, ylabel=ylabel)
+    if np.all(np.asarray(values)==0):
+        ax.set_ylim(0,1)
+        ax.text(0.5,0.5,&#x27;All values are zero&#x27;,transform=ax.transAxes,ha=&#x27;center&#x27;)
+    fig.tight_layout()
+    return fig
+
+def heat_plot(values, title, xlabel, ylabel, label):
+    array = values.detach().cpu().numpy() if isinstance(values, torch.Tensor) else np.asarray(values)
+    fig, ax = plt.subplots(figsize=(7, 3.5))
+    if np.any(array &lt; 0):
+        bound = max(float(np.abs(array).max()), 1e-8)
+        view = ax.imshow(array, aspect=&#x27;auto&#x27;, interpolation=&#x27;nearest&#x27;, cmap=&#x27;coolwarm&#x27;, vmin=-bound, vmax=bound)
+    else:
+        view = ax.imshow(array, aspect=&#x27;auto&#x27;, interpolation=&#x27;nearest&#x27;, cmap=&#x27;viridis&#x27;, vmin=0, vmax=max(float(array.max()),1e-8))
+    ax.set_xticks(np.unique(np.linspace(0,array.shape[1]-1,min(8,array.shape[1])).astype(int)))
+    ax.set_yticks(np.unique(np.linspace(0,array.shape[0]-1,min(8,array.shape[0])).astype(int)))
+    ax.set(title=title, xlabel=xlabel, ylabel=ylabel)
+    fig.colorbar(view, ax=ax, label=label)
+    fig.tight_layout()
+    return fig</code></pre></div></details><article class="quizitem" id="q7"><h2>7. Given integer sequences [[7,3],[8],[4,5,6]], create long ids padded on the right with zero to width four and boolean valid based on lengths. Return lengths as a long tensor. Do not infer validity from token values.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q7-code">Copy code</button></div><pre><code id="q7-code"># Write a complete solution after setup.</code></pre></div></article><article class="quizitem" id="q8"><h2>8. Write split_rows(rows,group_map) using group_map {0:train,1:validation,2:test} with string names. Return a dictionary with those three split keys, retaining row order. Raise ValueError for any group missing from group_map. Demonstrate using records with group 0,1 or 2 as result.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q8-code">Copy code</button></div><pre><code id="q8-code"># Write a complete solution after setup.</code></pre></div></article></section></main><footer>Mohammad Alshurbaji · LLMs · Lab 15</footer><script>document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const source=document.getElementById(b.dataset.copy);try{await navigator.clipboard.writeText(source.textContent);b.textContent='Copied';setTimeout(()=>b.textContent='Copy code',1400)}catch(_){const r=document.createRange();r.selectNodeContents(source);const s=window.getSelection();s.removeAllRanges();s.addRange(r);document.getElementById('copy-status').textContent='Code selected. Press Ctrl+C (or Command+C) to copy.'}});</script></body></html>
