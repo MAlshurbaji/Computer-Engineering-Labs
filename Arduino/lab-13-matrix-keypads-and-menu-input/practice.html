@@ -1,0 +1,314 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Arduino · Lab 13 · Practice</title><style>
+:root{--ink:#163447;--muted:#566d7d;--teal:#087f83;--line:#dce6eb;--paper:#fff;--wash:#eef4f6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--wash);color:var(--ink);font:17px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1120px;margin:32px auto 64px;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 14px 45px #1634470b}
+header{padding:38px 52px 32px;background:#123547;color:white}.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#8fe0dc;font-weight:750}h1{font-size:34px;line-height:1.18;margin:14px 0}header p{max-width:850px;color:#d4e5eb;margin-bottom:0}
+.toolbar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:14px 52px;border-bottom:1px solid var(--line);font-size:14px;background:#f7fafb}.toolbar a{font-weight:700}.toolbar button{margin-left:auto}.body{padding:30px 52px 42px}
+a{color:var(--teal);text-underline-offset:3px}h2{font-size:26px;line-height:1.3;margin:36px 0 16px}h3{font-size:21px;line-height:1.35;margin:10px 0 16px}h4{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:22px 0 8px}p{margin:10px 0 16px}li{margin:7px 0}ul,ol{padding-left:24px}
+.overview{display:grid;grid-template-columns:1fr 1fr;gap:26px}.panel{border:1px solid var(--line);padding:20px 24px;border-radius:12px;background:#fbfcfd}.panel h2{margin:0 0 10px;font-size:18px}.panel ul{margin:0}
+.start{border-left:4px solid var(--teal);padding:4px 20px;margin:26px 0;background:#f3faf9}.start p{font-size:15px}nav.contents{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}nav.contents a{padding:6px 12px;border:1px solid var(--line);border-radius:20px;font-size:14px;text-decoration:none}
+section.task,section.question{padding:28px 0 30px;border-top:1px solid var(--line);scroll-margin-top:18px}.tag{font-size:12px;text-transform:uppercase;font-weight:750;letter-spacing:.08em;color:var(--teal)}.concept{font-size:17px}.steps{padding-left:26px}.steps li{padding-left:5px}
+figure{margin:24px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}svg{display:block;width:100%;height:auto}figcaption{font-size:13px;color:var(--muted);padding:10px 16px;background:#f7fafb;border-top:1px solid var(--line)}
+code{font:14px/1.6 Consolas,ui-monospace,monospace;background:#eaf1f4;padding:2px 5px;border-radius:4px}pre{padding:22px;background:#112b3a;color:#eaf5fa;border-radius:0 0 10px 10px;overflow:auto;margin:0;tab-size:2}pre code{background:transparent;padding:0;color:inherit;font-size:14px;border-radius:0}.codebar{display:flex;align-items:center;justify-content:space-between;background:#1e4254;color:#d9e9ed;padding:8px 16px;border-radius:10px 10px 0 0;font-size:13px}.codewrap{margin:22px 0}button{font:inherit;cursor:pointer;border:1px solid #bbd0d9;border-radius:6px;padding:5px 12px;background:white;color:#163447;font-size:13px}.codebar button{background:#e6f2f3}.observe{background:#f2f8f7;padding:14px 20px;border-radius:9px;margin-top:20px}.observe h4{margin-top:0}.observe ul{margin-bottom:0}.practice{border:1px dashed #b4cbd4;padding:14px 20px;border-radius:9px}.practice h4{margin-top:0}.practice ul{margin-bottom:0}
+.option{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;margin:5px 0;border:1px solid var(--line);border-radius:7px;cursor:pointer}.option input{margin-top:7px}.question figure{margin:18px 0}.response{width:100%;min-height:100px;resize:vertical;border:1px solid #bfd0d9;border-radius:8px;padding:12px;font:15px/1.5 Consolas,monospace}.sources{border-top:1px solid var(--line);margin-top:20px;padding-top:15px;font-size:13px;color:var(--muted)}.sources p{margin:5px 0}.footer{font-size:13px;color:var(--muted);margin-top:28px}
+@media(max-width:760px){body{font-size:16px}main{margin:0;border-radius:0;border:0}.body,header{padding:24px}h1{font-size:28px}.toolbar{padding:12px 24px}.overview{grid-template-columns:1fr}.body svg{min-width:660px}figure{overflow-x:auto}pre{padding:16px}.contents{display:none}}
+@media print{body{background:white;font-size:11pt}main{margin:0;border:0;box-shadow:none;max-width:none}.body,header{padding:14px 22px}header{background:white;color:#163447}header p,.eyebrow{color:#566d7d}.toolbar,nav.contents,button{display:none}h1{font-size:24pt}h2{font-size:18pt}h3{font-size:15pt}figure,pre,.option{break-inside:avoid}.task,.question{break-before:auto}svg{max-height:650px}pre{white-space:pre-wrap;background:#f0f4f6;color:#102f42}pre code{font-size:9pt}.response{min-height:100px}.body svg{min-width:0}}
+.print-response{display:none}@media print{.response{display:none}.print-response{display:block;white-space:pre-wrap;overflow:visible;break-inside:auto;background:white;color:#163447;border:1px solid #bfd0d9;min-height:100px;padding:12px}}
+.photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:20px 0 28px}
+.photo-grid figure{margin:0}.photo img{display:block;width:100%;height:320px;object-fit:contain;background:#fff;padding:12px}
+.photo figcaption{line-height:1.5}.photo .credit{display:block;font-size:11px;margin-top:8px;color:#566d7d;overflow-wrap:anywhere}
+.photo-title{display:block;font-weight:750;color:#163447;margin-bottom:4px}.task>.photo{max-width:760px;margin:22px auto}
+@media(max-width:760px){.photo-grid{grid-template-columns:1fr}.photo img{height:280px}}
+@media print{.photo img{height:220px}.photo-grid{gap:10px}.photo .credit{font-size:8pt}}
+
+.diagram-pair{display:grid;grid-template-columns:1fr;gap:0}.page-nav{display:flex;gap:16px;flex-wrap:wrap}.toolbar [aria-current]{color:var(--muted);text-decoration:none}.concept{max-width:88ch}.footer a{font-weight:700}
+@media(min-width:1050px){.diagram-pair.compact{grid-template-columns:1fr 1fr;gap:18px}.diagram-pair.compact figure{align-self:start}.diagram-pair.compact svg{min-width:0}}
+</style></head><body><main><header><div class="eyebrow">Arduino · Uno R3 · Lab 13</div><h1>Matrix Keypads and Menu Input</h1><p>Complete the missing code, then build the two challenges. Upload one activity at a time.</p></header><div class="toolbar"><nav class="page-nav" aria-label="Lab files"><a href="material.html">Lab Material</a><a href="practice.html" aria-current="page">Practice</a><a href="quiz-practice.html">Practice Quiz</a></nav><button type="button" data-print>Print / save PDF</button></div><div class="body"><h2>Selection and Confirmation</h2><section class="task" id="p1"><span class="tag">Activity 1 · Complete the code</span><h3>Review a snack before confirming</h3><p class="">Use the complete lesson scanner and 25 ms stable-release/event rule. Keys 1–3 replace pending choice and print SELECTED; * clears it and prints CANCELLED. # prints ORDER plus the pending digit and consumes it, or EMPTY if none. Ignore other keys. No pending choice at startup; no physical dispensing.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="p1-fig1-title p1-fig1-desc"><title id="p1-fig1-title">Reuse Task 1 circuit: pending choice</title><desc id="p1-fig1-desc">Reuse Task 1 circuit: pending choice. Select 1, 2 or 3 Then Remember the latest choice Then Confirm with # or cancel with * Then Clear the pending choice </desc><rect width="1100" height="420" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Reuse Task 1 circuit: pending choice</tspan></text><rect x="44.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="130.0">Select 1, 2 or 3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="98.0">1</tspan></text><path d="M353.0 125 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="130.0">Remember the latest choice</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="98.0">2</tspan></text><path d="M709.0 125 H744.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="756.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="906.0" y="118.5">Confirm with # or cancel with</tspan><tspan x="906.0" y="141.5">*</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="772.0" y="98.0">3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#527080"><tspan x="550" y="203.0">Continue on the next row ↓</tspan></text><rect x="44.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="280.0">Clear the pending choice</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="248.0">4</tspan></text></svg><figcaption>Reuse Task 1 circuit: pending choice</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 540" role="img" aria-labelledby="p1-fig2-title p1-fig2-desc"><title id="p1-fig2-title">Confirming an available choice</title><desc id="p1-fig2-desc">Pending digit available? Yes: Print ORDER and clear it. No: Print EMPTY.</desc><rect width="1100" height="540" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Confirming an available choice</tspan></text><path d="M550 70 L800 185 L550 300 L300 185 Z" fill="#e2f2ef" stroke="#16807f" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="550" y="184.0">Pending digit available?</tspan></text><path d="M300 185 H220 V355 M800 185 H880 V355" fill="none" stroke="#16807f" stroke-width="3"/><path d="M213 345 L220 357 L227 345 M873 345 L880 357 L887 345" fill="none" stroke="#16807f" stroke-width="3"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="240" y="169.0">Yes</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="850" y="169.0">No</tspan></text><rect x="35" y="360" width="370" height="130" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="220.0" y="430.0">Print ORDER and clear it</tspan></text><rect x="695" y="360" width="370" height="130" rx="10" fill="#fff9e9" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="880.0" y="430.0">Print EMPTY</tspan></text></svg><figcaption>Confirming an available choice</figcaption></figure><div class="codewrap"><div class="codebar"><span>Arduino sketch · fill the blanks</span><button type="button" data-copy="sketch-p1">Copy sketch</button></div><pre><code id="sketch-p1">const ____ rowPins[4] = {2, 3, 4, 5};
+const ____ colPins[4] = {6, 7, 8, 9};
+const ____ labels[4][4] = {
+  {&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,&#x27;A&#x27;}, {&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;,&#x27;B&#x27;},
+  {&#x27;7&#x27;,&#x27;8&#x27;,&#x27;9&#x27;,&#x27;C&#x27;}, {&#x27;*&#x27;,&#x27;0&#x27;,&#x27;#&#x27;,&#x27;D&#x27;}
+};
+void setupKeypad() {
+  for (byte i = 0; i &lt; 4; ____i) {
+    ____(rowPins[i], INPUT);
+    ____(colPins[i], INPUT_PULLUP);
+  }
+}
+// 0 = released, &#x27;!&#x27; = more than one detected key, else a key label.
+char scanKeypad() {
+  ____ hits = 0;
+  ____ found = 0;
+  for (byte r = 0; r &lt; 4; ____r) {
+    ____(rowPins[r], LOW);
+    ____(rowPins[r], OUTPUT);
+    ____(5);  // Brief settling time before reading columns.
+    for (byte c = 0; c &lt; 4; ____c) {
+      if (digitalRead(colPins[c]) ____ LOW) {
+        ____hits;
+        found = ____;
+      }
+    }
+    ____(rowPins[r], INPUT);  // Release this row before the next.
+  }
+  if (hits ____ 0) return 0;
+  return hits ____ 1 ? found : &#x27;!&#x27;;
+}
+____ candidate = &#x27;!&#x27;;
+____ armed = false;
+____ candidateAt = 0;
+char pressEvent(unsigned long now) {
+  ____ reading = scanKeypad();
+  if (reading ____ candidate) {
+    candidate = ____;
+    candidateAt = ____;
+  }
+  if (reading ____ &#x27;!&#x27;) {
+    armed = ____;
+    return ____;
+  }
+  if (now - candidateAt ____ 25UL) return 0;
+  if (reading ____ 0) {
+    armed = ____;
+    return ____;
+  }
+  if (____) {
+    armed = ____;
+    return ____;
+  }
+  return ____;
+}
+____ pending = 0;
+void setup() {
+  ____();
+  Serial.____(9600);
+  candidate = ____();
+  candidateAt = ____();
+}
+void loop() {
+  ____ key = pressEvent(millis());
+  // Keys 1..3 replace the pending snack number; 0 means no selection.
+  if (key ____ &#x27;1&#x27; &amp;&amp; key &lt;= &#x27;3&#x27;) {
+    pending = ____;
+    Serial.____(&quot;SELECTED&quot;);
+  } else if (key ____ &#x27;*&#x27;) {
+    pending = ____;
+    Serial.____(&quot;CANCELLED&quot;);
+  } else if (key ____ &#x27;#&#x27;) {
+    if (pending ____ 0) {
+      Serial.____(&quot;ORDER &quot;);
+      Serial.____(pending);
+      pending = ____;  // A committed choice cannot be sent twice.
+    } else Serial.____(&quot;EMPTY&quot;);
+  }
+}</code></pre></div></section><h2>Array Selection</h2><section class="task" id="p2"><span class="tag">Activity 2 · Complete the code</span><h3>Select a desk location</h3><p class="">Retain the lesson wiring, scanner and release/debounce rule. Map A/B/C/D to Window/Wall/Door/Center using a four-element array and a checked key-to-index conversion. Ignore other events.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 392" role="img" aria-labelledby="p2-fig1-title p2-fig1-desc"><title id="p2-fig1-title">Location labels in array order</title><desc id="p2-fig1-desc">Location labels in array order. A: Window; B: Wall; C: Door; D: Center </desc><rect width="1100" height="392" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Location labels in array order</tspan></text><rect x="42.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="106.0">A</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="154.0">Window</tspan></text><rect x="392.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="550.0" y="106.0">B</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="550.0" y="154.0">Wall</tspan></text><rect x="742.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="900.0" y="106.0">C</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="900.0" y="154.0">Door</tspan></text><rect x="42.5" y="216" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="246.0">D</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="294.0">Center</tspan></text></svg><figcaption>Location labels in array order</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 540" role="img" aria-labelledby="p2-fig2-title p2-fig2-desc"><title id="p2-fig2-title">Protect array indexing</title><desc id="p2-fig2-desc">Key lies between A and D? Yes: Convert to index 0–3 and report. No: Ignore without indexing.</desc><rect width="1100" height="540" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Protect array indexing</tspan></text><path d="M550 70 L800 185 L550 300 L300 185 Z" fill="#e2f2ef" stroke="#16807f" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="550" y="184.0">Key lies between A and D?</tspan></text><path d="M300 185 H220 V355 M800 185 H880 V355" fill="none" stroke="#16807f" stroke-width="3"/><path d="M213 345 L220 357 L227 345 M873 345 L880 357 L887 345" fill="none" stroke="#16807f" stroke-width="3"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="240" y="169.0">Yes</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="850" y="169.0">No</tspan></text><rect x="35" y="360" width="370" height="130" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="220.0" y="430.0">Convert to index 0–3 and report</tspan></text><rect x="695" y="360" width="370" height="130" rx="10" fill="#fff9e9" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="880.0" y="430.0">Ignore without indexing</tspan></text></svg><figcaption>Protect array indexing</figcaption></figure><div class="codewrap"><div class="codebar"><span>Arduino sketch · fill the blanks</span><button type="button" data-copy="sketch-p2">Copy sketch</button></div><pre><code id="sketch-p2">const ____ rowPins[4] = {2, 3, 4, 5};
+const ____ colPins[4] = {6, 7, 8, 9};
+const ____ labels[4][4] = {
+  {&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,&#x27;A&#x27;}, {&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;,&#x27;B&#x27;},
+  {&#x27;7&#x27;,&#x27;8&#x27;,&#x27;9&#x27;,&#x27;C&#x27;}, {&#x27;*&#x27;,&#x27;0&#x27;,&#x27;#&#x27;,&#x27;D&#x27;}
+};
+void setupKeypad() {
+  for (byte i = 0; i &lt; 4; ____i) {
+    ____(rowPins[i], INPUT);
+    ____(colPins[i], INPUT_PULLUP);
+  }
+}
+// 0 = released, &#x27;!&#x27; = more than one detected key, else a key label.
+char scanKeypad() {
+  ____ hits = 0;
+  ____ found = 0;
+  for (byte r = 0; r &lt; 4; ____r) {
+    ____(rowPins[r], LOW);
+    ____(rowPins[r], OUTPUT);
+    ____(5);  // Brief settling time before reading columns.
+    for (byte c = 0; c &lt; 4; ____c) {
+      if (digitalRead(colPins[c]) ____ LOW) {
+        ____hits;
+        found = ____;
+      }
+    }
+    ____(rowPins[r], INPUT);  // Release this row before the next.
+  }
+  if (hits ____ 0) return 0;
+  return hits ____ 1 ? found : &#x27;!&#x27;;
+}
+____ candidate = &#x27;!&#x27;;
+____ armed = false;
+____ candidateAt = 0;
+char pressEvent(unsigned long now) {
+  ____ reading = scanKeypad();
+  if (reading ____ candidate) {
+    candidate = ____;
+    candidateAt = ____;
+  }
+  if (reading ____ &#x27;!&#x27;) {
+    armed = ____;
+    return ____;
+  }
+  if (now - candidateAt ____ 25UL) return 0;
+  if (reading ____ 0) {
+    armed = ____;
+    return ____;
+  }
+  if (____) {
+    armed = ____;
+    return ____;
+  }
+  return ____;
+}
+const ____* places[] = {&quot;Window&quot;, &quot;Wall&quot;, &quot;Door&quot;, &quot;Center&quot;};
+void setup() {
+  ____();
+  Serial.____(9600);
+  candidate = ____();
+  candidateAt = ____();
+}
+void loop() {
+  ____ key = pressEvent(millis());
+  if (key ____ &#x27;A&#x27; &amp;&amp; key &lt;= &#x27;D&#x27;) {
+    ____ index = key - &#x27;A&#x27;;
+    Serial.____(places[index]);
+  }
+}</code></pre></div></section><h2>Bounded State</h2><section class="task" id="p3"><span class="tag">Activity 3 · Complete the code</span><h3>Track free study seats</h3><p class="">Start with six free seats. A consumes one if any remain; B returns one without exceeding six; * restores six; # prints the count. Other keys and changes print nothing. Retain the full lesson scanner and one-event-per-release rule.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 392" role="img" aria-labelledby="p3-fig1-title p3-fig1-desc"><title id="p3-fig1-title">Seat-state boundaries</title><desc id="p3-fig1-desc">Seat-state boundaries. Startup: 6; Minimum: 0; Maximum: 6; Report key: # </desc><rect width="1100" height="392" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Seat-state boundaries</tspan></text><rect x="42.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="106.0">Startup</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="154.0">6</tspan></text><rect x="392.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="550.0" y="106.0">Minimum</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="550.0" y="154.0">0</tspan></text><rect x="742.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="900.0" y="106.0">Maximum</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="900.0" y="154.0">6</tspan></text><rect x="42.5" y="216" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="246.0">Report key</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="294.0">#</tspan></text></svg><figcaption>Seat-state boundaries</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 540" role="img" aria-labelledby="p3-fig2-title p3-fig2-desc"><title id="p3-fig2-title">Consume one seat</title><desc id="p3-fig2-desc">A event and free count &gt; 0? Yes: Decrease once. No: Do not decrease below zero.</desc><rect width="1100" height="540" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Consume one seat</tspan></text><path d="M550 70 L800 185 L550 300 L300 185 Z" fill="#e2f2ef" stroke="#16807f" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="550" y="184.0">A event and free count &gt; 0?</tspan></text><path d="M300 185 H220 V355 M800 185 H880 V355" fill="none" stroke="#16807f" stroke-width="3"/><path d="M213 345 L220 357 L227 345 M873 345 L880 357 L887 345" fill="none" stroke="#16807f" stroke-width="3"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="240" y="169.0">Yes</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="850" y="169.0">No</tspan></text><rect x="35" y="360" width="370" height="130" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="220.0" y="430.0">Decrease once</tspan></text><rect x="695" y="360" width="370" height="130" rx="10" fill="#fff9e9" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="880.0" y="430.0">Do not decrease below zero</tspan></text></svg><figcaption>Consume one seat</figcaption></figure><div class="codewrap"><div class="codebar"><span>Arduino sketch · fill the blanks</span><button type="button" data-copy="sketch-p3">Copy sketch</button></div><pre><code id="sketch-p3">const ____ rowPins[4] = {2, 3, 4, 5};
+const ____ colPins[4] = {6, 7, 8, 9};
+const ____ labels[4][4] = {
+  {&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,&#x27;A&#x27;}, {&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;,&#x27;B&#x27;},
+  {&#x27;7&#x27;,&#x27;8&#x27;,&#x27;9&#x27;,&#x27;C&#x27;}, {&#x27;*&#x27;,&#x27;0&#x27;,&#x27;#&#x27;,&#x27;D&#x27;}
+};
+void setupKeypad() {
+  for (byte i = 0; i &lt; 4; ____i) {
+    ____(rowPins[i], INPUT);
+    ____(colPins[i], INPUT_PULLUP);
+  }
+}
+// 0 = released, &#x27;!&#x27; = more than one detected key, else a key label.
+char scanKeypad() {
+  ____ hits = 0;
+  ____ found = 0;
+  for (byte r = 0; r &lt; 4; ____r) {
+    ____(rowPins[r], LOW);
+    ____(rowPins[r], OUTPUT);
+    ____(5);  // Brief settling time before reading columns.
+    for (byte c = 0; c &lt; 4; ____c) {
+      if (digitalRead(colPins[c]) ____ LOW) {
+        ____hits;
+        found = ____;
+      }
+    }
+    ____(rowPins[r], INPUT);  // Release this row before the next.
+  }
+  if (hits ____ 0) return 0;
+  return hits ____ 1 ? found : &#x27;!&#x27;;
+}
+____ candidate = &#x27;!&#x27;;
+____ armed = false;
+____ candidateAt = 0;
+char pressEvent(unsigned long now) {
+  ____ reading = scanKeypad();
+  if (reading ____ candidate) {
+    candidate = ____;
+    candidateAt = ____;
+  }
+  if (reading ____ &#x27;!&#x27;) {
+    armed = ____;
+    return ____;
+  }
+  if (now - candidateAt ____ 25UL) return 0;
+  if (reading ____ 0) {
+    armed = ____;
+    return ____;
+  }
+  if (____) {
+    armed = ____;
+    return ____;
+  }
+  return ____;
+}
+____ freeSeats = 6;
+void setup() {
+  ____();
+  Serial.____(9600);
+  candidate = ____();
+  candidateAt = ____();
+}
+void loop() {
+  ____ key = pressEvent(millis());
+  if (key ____ &#x27;A&#x27; &amp;&amp; freeSeats &gt; 0) --freeSeats;
+  else if (key ____ &#x27;B&#x27; &amp;&amp; freeSeats &lt; 6) ++freeSeats;
+  else if (key ____ &#x27;*&#x27;) freeSeats = 6;
+  else if (key ____ &#x27;#&#x27;) Serial.println(freeSeats);
+}</code></pre></div></section><h2>Inactivity Timing</h2><section class="task" id="p4"><span class="tag">Activity 4 · Complete the code</span><h3>Announce a quiet keypad</h3><p class="">Use the lesson event helper. Any accepted key prints ACTIVE and restarts a 3000 ms inactivity timer. After that interval without events, print REST once. Startup is already resting and prints nothing. A new event at the exact timeout wins and prevents REST on that pass. Holding a key supplies no repeated events.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="p4-fig1-title p4-fig1-desc"><title id="p4-fig1-title">Event-priority inactivity logic</title><desc id="p4-fig1-desc">Event-priority inactivity logic. Read one event Then Event: print ACTIVE and restart timer Then Otherwise due: print REST once Then Keep scanning in either state </desc><rect width="1100" height="420" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Event-priority inactivity logic</tspan></text><rect x="44.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="130.0">Read one event</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="98.0">1</tspan></text><path d="M353.0 125 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="118.5">Event: print ACTIVE and</tspan><tspan x="550.0" y="141.5">restart timer</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="98.0">2</tspan></text><path d="M709.0 125 H744.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="756.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="906.0" y="130.0">Otherwise due: print REST once</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="772.0" y="98.0">3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#527080"><tspan x="550" y="203.0">Continue on the next row ↓</tspan></text><rect x="44.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="280.0">Keep scanning in either state</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="248.0">4</tspan></text></svg><figcaption>Event-priority inactivity logic</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 392" role="img" aria-labelledby="p4-fig2-title p4-fig2-desc"><title id="p4-fig2-title">Timing contract</title><desc id="p4-fig2-desc">Timing contract. Quiet interval: 3000 ms; Held key: no repeated refresh events; Startup: resting without a message; Equality with a new event: event takes priority </desc><rect width="1100" height="392" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Timing contract</tspan></text><rect x="42.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="106.0">Quiet interval</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="154.0">3000 ms</tspan></text><rect x="392.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="550.0" y="106.0">Held key</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="550.0" y="140.5">no repeated refresh</tspan><tspan x="550.0" y="167.5">events</tspan></text><rect x="742.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="900.0" y="106.0">Startup</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="900.0" y="140.5">resting without a</tspan><tspan x="900.0" y="167.5">message</tspan></text><rect x="42.5" y="216" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="246.0">Equality with a new event</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="294.0">event takes priority</tspan></text></svg><figcaption>Timing contract</figcaption></figure><div class="codewrap"><div class="codebar"><span>Arduino sketch · fill the blanks</span><button type="button" data-copy="sketch-p4">Copy sketch</button></div><pre><code id="sketch-p4">const ____ rowPins[4] = {2, 3, 4, 5};
+const ____ colPins[4] = {6, 7, 8, 9};
+const ____ labels[4][4] = {
+  {&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,&#x27;A&#x27;}, {&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;,&#x27;B&#x27;},
+  {&#x27;7&#x27;,&#x27;8&#x27;,&#x27;9&#x27;,&#x27;C&#x27;}, {&#x27;*&#x27;,&#x27;0&#x27;,&#x27;#&#x27;,&#x27;D&#x27;}
+};
+void setupKeypad() {
+  for (byte i = 0; i &lt; 4; ____i) {
+    ____(rowPins[i], INPUT);
+    ____(colPins[i], INPUT_PULLUP);
+  }
+}
+// 0 = released, &#x27;!&#x27; = more than one detected key, else a key label.
+char scanKeypad() {
+  ____ hits = 0;
+  ____ found = 0;
+  for (byte r = 0; r &lt; 4; ____r) {
+    ____(rowPins[r], LOW);
+    ____(rowPins[r], OUTPUT);
+    ____(5);  // Brief settling time before reading columns.
+    for (byte c = 0; c &lt; 4; ____c) {
+      if (digitalRead(colPins[c]) ____ LOW) {
+        ____hits;
+        found = ____;
+      }
+    }
+    ____(rowPins[r], INPUT);  // Release this row before the next.
+  }
+  if (hits ____ 0) return 0;
+  return hits ____ 1 ? found : &#x27;!&#x27;;
+}
+____ candidate = &#x27;!&#x27;;
+____ armed = false;
+____ candidateAt = 0;
+char pressEvent(unsigned long now) {
+  ____ reading = scanKeypad();
+  if (reading ____ candidate) {
+    candidate = ____;
+    candidateAt = ____;
+  }
+  if (reading ____ &#x27;!&#x27;) {
+    armed = ____;
+    return ____;
+  }
+  if (now - candidateAt ____ 25UL) return 0;
+  if (reading ____ 0) {
+    armed = ____;
+    return ____;
+  }
+  if (____) {
+    armed = ____;
+    return ____;
+  }
+  return ____;
+}
+____ resting = true;
+____ lastEventAt = 0;
+void setup() {
+  ____();
+  Serial.____(9600);
+  candidate = ____();
+  candidateAt = ____();
+}
+void loop() {
+  ____ now = millis();
+  ____ key = pressEvent(now);
+  if (key ____ 0) {
+    lastEventAt = ____;
+    resting = ____;
+    Serial.____(&quot;ACTIVE&quot;);
+  } else if (!resting &amp;&amp; now - lastEventAt ____ 3000UL) {
+    resting = ____;
+    Serial.____(&quot;REST&quot;);
+  }
+}</code></pre></div></section><h2>Bounded Totals</h2><section class="task" id="p5"><span class="tag">Activity 5 · Build it yourself</span><h3>Keep a small snack tally</h3><p class="">Using the complete lesson scanner/event contract, start fruit and cracker totals at zero. 1 increments fruit and 2 increments crackers, capped separately at nine; at the cap print LIMIT for that attempted event. Successful increments print nothing. C clears both and prints CLEARED. # prints FRUIT=n CRACKERS=n. Ignore other keys.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 252" role="img" aria-labelledby="p5-fig1-title p5-fig1-desc"><title id="p5-fig1-title">Reuse Task 1 circuit: bounded totals</title><desc id="p5-fig1-desc">Reuse Task 1 circuit: bounded totals. Fruit count: 0–9; Cracker count: 0–9; Increment per accepted press: 1 </desc><rect width="1100" height="252" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Reuse Task 1 circuit: bounded totals</tspan></text><rect x="42.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="106.0">Fruit count</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="154.0">0–9</tspan></text><rect x="392.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="550.0" y="106.0">Cracker count</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="550.0" y="154.0">0–9</tspan></text><rect x="742.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="900.0" y="106.0">Increment per accepted press</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="900.0" y="154.0">1</tspan></text></svg><figcaption>Reuse Task 1 circuit: bounded totals</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 540" role="img" aria-labelledby="p5-fig2-title p5-fig2-desc"><title id="p5-fig2-title">Increment the chosen total</title><desc id="p5-fig2-desc">Selected count below nine? Yes: Increment that total only. No: Keep it and print LIMIT.</desc><rect width="1100" height="540" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Increment the chosen total</tspan></text><path d="M550 70 L800 185 L550 300 L300 185 Z" fill="#e2f2ef" stroke="#16807f" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="550" y="184.0">Selected count below nine?</tspan></text><path d="M300 185 H220 V355 M800 185 H880 V355" fill="none" stroke="#16807f" stroke-width="3"/><path d="M213 345 L220 357 L227 345 M873 345 L880 357 L887 345" fill="none" stroke="#16807f" stroke-width="3"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="240" y="169.0">Yes</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="850" y="169.0">No</tspan></text><rect x="35" y="360" width="370" height="130" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="220.0" y="430.0">Increment that total only</tspan></text><rect x="695" y="360" width="370" height="130" rx="10" fill="#fff9e9" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="880.0" y="430.0">Keep it and print LIMIT</tspan></text></svg><figcaption>Increment the chosen total</figcaption></figure><label for="response-5">Your sketch</label><textarea class="response" id="response-5" spellcheck="false"></textarea></section><h2>Dependent Selections</h2><section class="task" id="p6"><span class="tag">Activity 6 · Build it yourself</span><h3>Choose a supply-zone location</h3><p class="">Keep the full lesson scanner and release/debounce rules. Start with no zone or shelf. A/B chooses a zone, clears any shelf and prints ZONE SELECTED. After a zone exists, 1–3 chooses a shelf and prints SHELF SELECTED. # prints LOCATION followed by a space and zone/shelf together only if both exist, then clears both; otherwise print INCOMPLETE. * clears both and prints CLEARED. Ignore all other events.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="p6-fig1-title p6-fig1-desc"><title id="p6-fig1-title">A shelf depends on a zone</title><desc id="p6-fig1-desc">A shelf depends on a zone. Choose A or B Then Choose shelf 1–3 Then Confirm complete location Then Clear both after reporting </desc><rect width="1100" height="420" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">A shelf depends on a zone</tspan></text><rect x="44.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="130.0">Choose A or B</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="98.0">1</tspan></text><path d="M353.0 125 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="130.0">Choose shelf 1–3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="98.0">2</tspan></text><path d="M709.0 125 H744.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="756.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="906.0" y="130.0">Confirm complete location</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="772.0" y="98.0">3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#527080"><tspan x="550" y="203.0">Continue on the next row ↓</tspan></text><rect x="44.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="280.0">Clear both after reporting</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="248.0">4</tspan></text></svg><figcaption>A shelf depends on a zone</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 540" role="img" aria-labelledby="p6-fig2-title p6-fig2-desc"><title id="p6-fig2-title">Changing the parent selection</title><desc id="p6-fig2-desc">A new zone is selected? Yes: Forget the previous shelf. No: Retain state until another permitted event.</desc><rect width="1100" height="540" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Changing the parent selection</tspan></text><path d="M550 70 L800 185 L550 300 L300 185 Z" fill="#e2f2ef" stroke="#16807f" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="550" y="184.0">A new zone is selected?</tspan></text><path d="M300 185 H220 V355 M800 185 H880 V355" fill="none" stroke="#16807f" stroke-width="3"/><path d="M213 345 L220 357 L227 345 M873 345 L880 357 L887 345" fill="none" stroke="#16807f" stroke-width="3"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="240" y="169.0">Yes</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="850" y="169.0">No</tspan></text><rect x="35" y="360" width="370" height="130" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="220.0" y="430.0">Forget the previous shelf</tspan></text><rect x="695" y="360" width="370" height="130" rx="10" fill="#fff9e9" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="880.0" y="418.5">Retain state until another permitted</tspan><tspan x="880.0" y="441.5">event</tspan></text></svg><figcaption>Changing the parent selection</figcaption></figure><label for="response-6">Your sketch</label><textarea class="response" id="response-6" spellcheck="false"></textarea></section><p class="footer">Next: <a href="quiz-practice.html">Practice Quiz</a>. Typed responses are not saved automatically; print to keep a copy.</p></div></main><script>document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{const c=document.getElementById(b.dataset.copy).textContent;try{await navigator.clipboard.writeText(c);b.textContent='Copied';}catch(e){const r=document.createRange();r.selectNodeContents(document.getElementById(b.dataset.copy));const s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected: press Ctrl+C';}setTimeout(()=>b.textContent='Copy sketch',2500)}));window.addEventListener('beforeprint',()=>{document.querySelectorAll('.response').forEach(t=>{let p=document.getElementById(t.id+'-print');if(!p){p=document.createElement('pre');p.id=t.id+'-print';p.className='print-response';t.after(p)}p.textContent=t.value})});document.querySelectorAll('[data-print]').forEach(b=>b.addEventListener('click',()=>window.print()));</script></body></html>

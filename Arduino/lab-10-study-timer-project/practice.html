@@ -1,0 +1,280 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Arduino · Lab 10 · Practice</title><style>
+:root{--ink:#163447;--muted:#566d7d;--teal:#087f83;--line:#dce6eb;--paper:#fff;--wash:#eef4f6}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--wash);color:var(--ink);font:17px/1.65 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:1120px;margin:32px auto 64px;background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 14px 45px #1634470b}
+header{padding:38px 52px 32px;background:#123547;color:white}.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#8fe0dc;font-weight:750}h1{font-size:34px;line-height:1.18;margin:14px 0}header p{max-width:850px;color:#d4e5eb;margin-bottom:0}
+.toolbar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:14px 52px;border-bottom:1px solid var(--line);font-size:14px;background:#f7fafb}.toolbar a{font-weight:700}.toolbar button{margin-left:auto}.body{padding:30px 52px 42px}
+a{color:var(--teal);text-underline-offset:3px}h2{font-size:26px;line-height:1.3;margin:36px 0 16px}h3{font-size:21px;line-height:1.35;margin:10px 0 16px}h4{font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:22px 0 8px}p{margin:10px 0 16px}li{margin:7px 0}ul,ol{padding-left:24px}
+.overview{display:grid;grid-template-columns:1fr 1fr;gap:26px}.panel{border:1px solid var(--line);padding:20px 24px;border-radius:12px;background:#fbfcfd}.panel h2{margin:0 0 10px;font-size:18px}.panel ul{margin:0}
+.start{border-left:4px solid var(--teal);padding:4px 20px;margin:26px 0;background:#f3faf9}.start p{font-size:15px}nav.contents{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}nav.contents a{padding:6px 12px;border:1px solid var(--line);border-radius:20px;font-size:14px;text-decoration:none}
+section.task,section.question{padding:28px 0 30px;border-top:1px solid var(--line);scroll-margin-top:18px}.tag{font-size:12px;text-transform:uppercase;font-weight:750;letter-spacing:.08em;color:var(--teal)}.concept{font-size:17px}.steps{padding-left:26px}.steps li{padding-left:5px}
+figure{margin:24px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden}svg{display:block;width:100%;height:auto}figcaption{font-size:13px;color:var(--muted);padding:10px 16px;background:#f7fafb;border-top:1px solid var(--line)}
+code{font:14px/1.6 Consolas,ui-monospace,monospace;background:#eaf1f4;padding:2px 5px;border-radius:4px}pre{padding:22px;background:#112b3a;color:#eaf5fa;border-radius:0 0 10px 10px;overflow:auto;margin:0;tab-size:2}pre code{background:transparent;padding:0;color:inherit;font-size:14px;border-radius:0}.codebar{display:flex;align-items:center;justify-content:space-between;background:#1e4254;color:#d9e9ed;padding:8px 16px;border-radius:10px 10px 0 0;font-size:13px}.codewrap{margin:22px 0}button{font:inherit;cursor:pointer;border:1px solid #bbd0d9;border-radius:6px;padding:5px 12px;background:white;color:#163447;font-size:13px}.codebar button{background:#e6f2f3}.observe{background:#f2f8f7;padding:14px 20px;border-radius:9px;margin-top:20px}.observe h4{margin-top:0}.observe ul{margin-bottom:0}.practice{border:1px dashed #b4cbd4;padding:14px 20px;border-radius:9px}.practice h4{margin-top:0}.practice ul{margin-bottom:0}
+.option{display:flex;gap:10px;align-items:flex-start;padding:8px 12px;margin:5px 0;border:1px solid var(--line);border-radius:7px;cursor:pointer}.option input{margin-top:7px}.question figure{margin:18px 0}.response{width:100%;min-height:100px;resize:vertical;border:1px solid #bfd0d9;border-radius:8px;padding:12px;font:15px/1.5 Consolas,monospace}.sources{border-top:1px solid var(--line);margin-top:20px;padding-top:15px;font-size:13px;color:var(--muted)}.sources p{margin:5px 0}.footer{font-size:13px;color:var(--muted);margin-top:28px}
+@media(max-width:760px){body{font-size:16px}main{margin:0;border-radius:0;border:0}.body,header{padding:24px}h1{font-size:28px}.toolbar{padding:12px 24px}.overview{grid-template-columns:1fr}.body svg{min-width:660px}figure{overflow-x:auto}pre{padding:16px}.contents{display:none}}
+@media print{body{background:white;font-size:11pt}main{margin:0;border:0;box-shadow:none;max-width:none}.body,header{padding:14px 22px}header{background:white;color:#163447}header p,.eyebrow{color:#566d7d}.toolbar,nav.contents,button{display:none}h1{font-size:24pt}h2{font-size:18pt}h3{font-size:15pt}figure,pre,.option{break-inside:avoid}.task,.question{break-before:auto}svg{max-height:650px}pre{white-space:pre-wrap;background:#f0f4f6;color:#102f42}pre code{font-size:9pt}.response{min-height:100px}.body svg{min-width:0}}
+.print-response{display:none}@media print{.response{display:none}.print-response{display:block;white-space:pre-wrap;overflow:visible;break-inside:auto;background:white;color:#163447;border:1px solid #bfd0d9;min-height:100px;padding:12px}}
+.photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:20px 0 28px}
+.photo-grid figure{margin:0}.photo img{display:block;width:100%;height:320px;object-fit:contain;background:#fff;padding:12px}
+.photo figcaption{line-height:1.5}.photo .credit{display:block;font-size:11px;margin-top:8px;color:#566d7d;overflow-wrap:anywhere}
+.photo-title{display:block;font-weight:750;color:#163447;margin-bottom:4px}.task>.photo{max-width:760px;margin:22px auto}
+@media(max-width:760px){.photo-grid{grid-template-columns:1fr}.photo img{height:280px}}
+@media print{.photo img{height:220px}.photo-grid{gap:10px}.photo .credit{font-size:8pt}}
+
+.diagram-pair{display:grid;grid-template-columns:1fr;gap:0}.page-nav{display:flex;gap:16px;flex-wrap:wrap}.toolbar [aria-current]{color:var(--muted);text-decoration:none}.concept{max-width:88ch}.footer a{font-weight:700}
+@media(min-width:1050px){.diagram-pair.compact{grid-template-columns:1fr 1fr;gap:18px}.diagram-pair.compact figure{align-self:start}.diagram-pair.compact svg{min-width:0}}
+</style></head><body><main><header><div class="eyebrow">Arduino · Uno R3 · Lab 10</div><h1>Study Timer Project</h1><p>Complete the missing code, then build the two challenges. Upload one activity at a time.</p></header><div class="toolbar"><nav class="page-nav" aria-label="Lab files"><a href="material.html">Lab Material</a><a href="practice.html" aria-current="page">Practice</a><a href="quiz-practice.html">Practice Quiz</a></nav><button type="button" data-print>Print / save PDF</button></div><div class="body"><h2>Safe remaining-time reports</h2><section class="task" id="p1"><span class="tag">Activity 1 · Complete the code</span><h3>Show remaining whole seconds</h3><p class="">Use the complete timer circuit and the taught 30 ms press helper. Preserve teaching task 2 transitions, press-before-expiry priority and 5000–20000 ms A0 snapshot. Start lastSeconds at -1 and reset it on every state entry. After expiry handling, only while RUNNING, report remaining seconds rounded upward and only when changed. Keep the start-duration message in milliseconds; countdown messages are seconds. No delay.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="p1-fig1-title p1-fig1-desc"><title id="p1-fig1-title">Practice countdown order</title><desc id="p1-fig1-desc">Practice countdown order. Handle accepted press Then Apply expiry if still RUNNING Then Only while RUNNING: calculate remaining Then Report a changed whole second </desc><rect width="1100" height="420" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice countdown order</tspan></text><rect x="44.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="130.0">Handle accepted press</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="98.0">1</tspan></text><path d="M353.0 125 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="130.0">Apply expiry if still RUNNING</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="98.0">2</tspan></text><path d="M709.0 125 H744.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="756.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="906.0" y="118.5">Only while RUNNING: calculate</tspan><tspan x="906.0" y="141.5">remaining</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="772.0" y="98.0">3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#527080"><tspan x="550" y="203.0">Continue on the next row ↓</tspan></text><rect x="44.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="280.0">Report a changed whole second</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="248.0">4</tspan></text></svg><figcaption>Practice countdown order</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 252" role="img" aria-labelledby="p1-fig2-title p1-fig2-desc"><title id="p1-fig2-title">Practice report contracts</title><desc id="p1-fig2-desc">Practice report contracts. Positive fraction of a second: Round upward; Already expired: No running countdown; New state: Reset lastSeconds to -1 </desc><rect width="1100" height="252" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice report contracts</tspan></text><rect x="42.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="106.0">Positive fraction of a second</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="154.0">Round upward</tspan></text><rect x="392.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="550.0" y="106.0">Already expired</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="550.0" y="154.0">No running countdown</tspan></text><rect x="742.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="900.0" y="106.0">New state</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="900.0" y="154.0">Reset lastSeconds to -1</tspan></text></svg><figcaption>Practice report contracts</figcaption></figure><div class="codewrap"><div class="codebar"><span>Arduino sketch · fill the blanks</span><button type="button" data-copy="sketch-p1">Copy sketch</button></div><pre><code id="sketch-p1">// Startup: IDLE; timestamps zero; duration 5000 ms; raw/stable button HIGH.
+// pressed(now): accept each new LOW after 30 ms stable; keep calling every pass.
+// enterState: stop D8 tone; green D5 only RUNNING, red D6 only DONE.
+// DONE entry requests one 880 Hz, 250 ms tone unless the task specifies otherwise.
+// Serial is 9600 baud; D2 INPUT_PULLUP; D5, D6 and D8 OUTPUT.
+enum State {
+  IDLE, RUNNING, DONE
+}
+;
+State state = ____;
+unsigned long startedAt = ____, durationMs = 5000UL;
+// Call on every loop pass. One event follows 30 ms of stable LOW.
+bool rawButton = ____, stableButton = HIGH;
+unsigned long changedAt = ____;
+bool pressed(unsigned long now) {
+  bool reading = ____;
+  if (____) {
+    rawButton = ____;
+    changedAt = ____;
+  }
+  if (____) {
+    stableButton = ____;
+    return ____;
+  }
+  return ____;
+}
+int lastSeconds = ____;
+void enterState(State next) {
+  state = ____;
+  lastSeconds = ____;
+  // Reset/cancel always silences a previous sound.
+  ____(8);
+  ____(5, state == RUNNING ? HIGH : LOW);
+  ____(6, state == DONE ? HIGH : LOW);
+  // Once, on state entry.
+  if (____) tone(8, 880, 250);
+}
+void setup() {
+  ____(2, INPUT_PULLUP);
+  ____(5, OUTPUT);
+  ____(6, OUTPUT);
+  ____(8, OUTPUT);
+  Serial.____(9600);
+  ____(IDLE);
+}
+void loop() {
+  unsigned long now = ____;
+  bool event = ____;
+  // Process a press before expiry: a simultaneous cancel wins.
+  if (____) {
+    if (____) {
+      durationMs = ____;
+      startedAt = ____;
+      ____(RUNNING);
+      Serial.____(durationMs);
+      // Cancel RUNNING or acknowledge DONE.
+    }
+    else ____(IDLE);
+  }
+  if (____) enterState(DONE);
+  if (____) {
+    unsigned long remaining = ____;
+    int seconds = ____;
+    if (____) {
+      Serial.____(seconds);
+      lastSeconds = ____;
+    }
+  }
+}</code></pre></div></section><h2>State outputs and transitions</h2><section class="task" id="p2"><span class="tag">Activity 2 · Complete the code</span><h3>Complete a fixed silent interval</h3><p class="">Use D2, D5 and D6 from the full timer circuit; D8 remains silent. Start IDLE. Each stable 30 ms press in IDLE starts a fixed 7000 ms run. RUNNING press cancels, DONE press acknowledges, and a press wins over simultaneous expiry. Green is on only in RUNNING, red only in DONE. Stop any tone on state entry; request none. Print the stored milliseconds once at each start at 9600 baud. Keep initial duration 5000 ms until first start.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 252" role="img" aria-labelledby="p2-fig1-title p2-fig1-desc"><title id="p2-fig1-title">Practice fixed silent state outputs</title><desc id="p2-fig1-desc">Practice fixed silent state outputs. IDLE: Both LEDs off; RUNNING: Green only; DONE: Red only, silent </desc><rect width="1100" height="252" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice fixed silent state outputs</tspan></text><rect x="42.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="106.0">IDLE</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="154.0">Both LEDs off</tspan></text><rect x="392.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="550.0" y="106.0">RUNNING</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="550.0" y="154.0">Green only</tspan></text><rect x="742.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="900.0" y="106.0">DONE</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="900.0" y="154.0">Red only, silent</tspan></text></svg><figcaption>Practice fixed silent state outputs</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="p2-fig2-title p2-fig2-desc"><title id="p2-fig2-title">Practice fixed interval controls</title><desc id="p2-fig2-desc">Practice fixed interval controls. IDLE press starts 7000 ms Then RUNNING press cancels Then Expiry enters silent DONE Then DONE press returns IDLE </desc><rect width="1100" height="420" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice fixed interval controls</tspan></text><rect x="44.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="130.0">IDLE press starts 7000 ms</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="98.0">1</tspan></text><path d="M353.0 125 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="130.0">RUNNING press cancels</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="98.0">2</tspan></text><path d="M709.0 125 H744.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="756.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="906.0" y="130.0">Expiry enters silent DONE</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="772.0" y="98.0">3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#527080"><tspan x="550" y="203.0">Continue on the next row ↓</tspan></text><rect x="44.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="280.0">DONE press returns IDLE</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="248.0">4</tspan></text></svg><figcaption>Practice fixed interval controls</figcaption></figure><div class="codewrap"><div class="codebar"><span>Arduino sketch · fill the blanks</span><button type="button" data-copy="sketch-p2">Copy sketch</button></div><pre><code id="sketch-p2">// Startup: IDLE; timestamps zero; duration 5000 ms; raw/stable button HIGH.
+// pressed(now): accept each new LOW after 30 ms stable; keep calling every pass.
+// enterState: stop D8 tone; green D5 only RUNNING, red D6 only DONE.
+// DONE entry requests one 880 Hz, 250 ms tone unless the task specifies otherwise.
+// Serial is 9600 baud; D2 INPUT_PULLUP; D5, D6 and D8 OUTPUT.
+enum State {
+  IDLE, RUNNING, DONE
+}
+;
+State state = ____;
+unsigned long startedAt = ____, durationMs = 5000UL;
+// Call on every loop pass. One event follows 30 ms of stable LOW.
+bool rawButton = ____, stableButton = HIGH;
+unsigned long changedAt = ____;
+bool pressed(unsigned long now) {
+  bool reading = ____;
+  if (____) {
+    rawButton = ____;
+    changedAt = ____;
+  }
+  if (____) {
+    stableButton = ____;
+    return ____;
+  }
+  return ____;
+}
+void enterState(State next) {
+  state = ____;
+  // Reset/cancel always silences a previous sound.
+  ____(8);
+  ____(5, state == RUNNING ? HIGH : LOW);
+  ____(6, state == DONE ? HIGH : LOW);
+  // DONE stays silent and red.
+}
+void setup() {
+  ____(2, INPUT_PULLUP);
+  ____(5, OUTPUT);
+  ____(6, OUTPUT);
+  ____(8, OUTPUT);
+  Serial.____(9600);
+  ____(IDLE);
+}
+void loop() {
+  unsigned long now = ____;
+  bool event = ____;
+  // Process a press before expiry: a simultaneous cancel wins.
+  if (____) {
+    if (____) {
+      durationMs = ____;
+      startedAt = ____;
+      ____(RUNNING);
+      Serial.____(durationMs);
+      // Cancel RUNNING or acknowledge DONE.
+    }
+    else ____(IDLE);
+  }
+  if (____) enterState(DONE);
+}</code></pre></div></section><h2>One-time actions inside a run</h2><section class="task" id="p3"><span class="tag">Activity 3 · Complete the code</span><h3>Report one final-quarter milestone</h3><p class="">Use the complete timer circuit and teaching task 2 rules, including 5000–20000 ms snapshot and press-before-expiry priority. Set finalPart false initially and on every state entry. After expiry, if still RUNNING, print FINAL QUARTER once when elapsed reaches the integer value durationMs * 3 / 4. Keep the start-duration message and normal completion sound. A late pass that has already expired must not print the milestone. Use unsigned long arithmetic and 9600 baud.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 636" role="img" aria-labelledby="p3-fig1-title p3-fig1-desc"><title id="p3-fig1-title">Practice milestone within a run</title><desc id="p3-fig1-desc">Elapsed fraction of stored duration against Progress (%). Reference fractions: (0, 0), (0.5, 50), (0.75, 75), (1, 100)</desc><rect width="1100" height="636" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice milestone within a run</tspan></text><path d="M155.00 90 V425" stroke="#dce6eb" stroke-width="1"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="155.0" y="455.0">0</tspan></text><path d="M590.00 90 V425" stroke="#dce6eb" stroke-width="1"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="590.0" y="455.0">0.5</tspan></text><path d="M807.50 90 V425" stroke="#dce6eb" stroke-width="1"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="807.5" y="455.0">0.75</tspan></text><path d="M1025.00 90 V425" stroke="#dce6eb" stroke-width="1"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="1025.0" y="455.0">1</tspan></text><path d="M155 425.00 H1025" stroke="#dce6eb" stroke-width="1"/><text text-anchor="end" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="140" y="430.0">0</tspan></text><path d="M155 358.00 H1025" stroke="#dce6eb" stroke-width="1"/><text text-anchor="end" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="140" y="363.0">20</tspan></text><path d="M155 291.00 H1025" stroke="#dce6eb" stroke-width="1"/><text text-anchor="end" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="140" y="296.0">40</tspan></text><path d="M155 224.00 H1025" stroke="#dce6eb" stroke-width="1"/><text text-anchor="end" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="140" y="229.0">60</tspan></text><path d="M155 157.00 H1025" stroke="#dce6eb" stroke-width="1"/><text text-anchor="end" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="140" y="162.0">80</tspan></text><path d="M155 90.00 H1025" stroke="#dce6eb" stroke-width="1"/><text text-anchor="end" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#203348"><tspan x="140" y="95.0">100</tspan></text><path d="M155 90 V425 H1025" stroke="#526b80" stroke-width="2" fill="none"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="590.0" y="495.0">Elapsed fraction of stored duration</tspan></text><g transform="translate(33 257) rotate(-90)"><text text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="500" fill="#203348"><tspan x="0" y="0.0">Progress (%)</tspan></text></g><polyline points="155.00,425.00 590.00,257.50 807.50,173.75 1025.00,90.00" fill="none" stroke="#087f83" stroke-width="3"/><circle cx="155.00" cy="425.00" r="5" fill="#087f83"/><circle cx="590.00" cy="257.50" r="5" fill="#087f83"/><circle cx="807.50" cy="173.75" r="5" fill="#087f83"/><circle cx="1025.00" cy="90.00" r="5" fill="#087f83"/><path d="M160 525 H205" stroke="#087f83" stroke-width="4"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="16" font-weight="500" fill="#203348"><tspan x="220" y="530.0">Reference fractions</tspan></text><text text-anchor="start" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#526b80"><tspan x="32" y="599.0">The milestone occurs only if a pass is still RUNNING at or beyond its threshold.</tspan></text></svg><figcaption>Practice milestone within a run</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="p3-fig2-title p3-fig2-desc"><title id="p3-fig2-title">Practice milestone priority</title><desc id="p3-fig2-desc">Practice milestone priority. Apply accepted press Then Apply expiry Then If still RUNNING and not yet reported Then Compare three-quarter threshold Then Print once and mark reported </desc><rect width="1100" height="420" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice milestone priority</tspan></text><rect x="44.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="130.0">Apply accepted press</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="98.0">1</tspan></text><path d="M353.0 125 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="130.0">Apply expiry</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="98.0">2</tspan></text><path d="M709.0 125 H744.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="756.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="906.0" y="118.5">If still RUNNING and not yet</tspan><tspan x="906.0" y="141.5">reported</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="772.0" y="98.0">3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#527080"><tspan x="550" y="203.0">Continue on the next row ↓</tspan></text><rect x="44.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="268.5">Compare three-quarter</tspan><tspan x="194.0" y="291.5">threshold</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="248.0">4</tspan></text><path d="M353.0 275 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="280.0">Print once and mark reported</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="248.0">5</tspan></text></svg><figcaption>Practice milestone priority</figcaption></figure><div class="codewrap"><div class="codebar"><span>Arduino sketch · fill the blanks</span><button type="button" data-copy="sketch-p3">Copy sketch</button></div><pre><code id="sketch-p3">// Startup: IDLE; timestamps zero; duration 5000 ms; raw/stable button HIGH.
+// pressed(now): accept each new LOW after 30 ms stable; keep calling every pass.
+// enterState: stop D8 tone; green D5 only RUNNING, red D6 only DONE.
+// DONE entry requests one 880 Hz, 250 ms tone unless the task specifies otherwise.
+// Serial is 9600 baud; D2 INPUT_PULLUP; D5, D6 and D8 OUTPUT.
+// finalPart starts false and resets false in enterState.
+enum State {
+  IDLE, RUNNING, DONE
+}
+;
+State state = ____;
+unsigned long startedAt = ____, durationMs = 5000UL;
+// Call on every loop pass. One event follows 30 ms of stable LOW.
+bool rawButton = ____, stableButton = HIGH;
+unsigned long changedAt = ____;
+bool pressed(unsigned long now) {
+  bool reading = ____;
+  if (____) {
+    rawButton = ____;
+    changedAt = ____;
+  }
+  if (____) {
+    stableButton = ____;
+    return ____;
+  }
+  return ____;
+}
+bool finalPart = ____;
+void enterState(State next) {
+  state = ____;
+  finalPart = ____;
+  // Reset/cancel always silences a previous sound.
+  ____(8);
+  ____(5, state == RUNNING ? HIGH : LOW);
+  ____(6, state == DONE ? HIGH : LOW);
+  // Once, on state entry.
+  if (____) tone(8, 880, 250);
+}
+void setup() {
+  ____(2, INPUT_PULLUP);
+  ____(5, OUTPUT);
+  ____(6, OUTPUT);
+  ____(8, OUTPUT);
+  Serial.____(9600);
+  ____(IDLE);
+}
+void loop() {
+  unsigned long now = ____;
+  bool event = ____;
+  // Process a press before expiry: a simultaneous cancel wins.
+  if (____) {
+    if (____) {
+      durationMs = ____;
+      startedAt = ____;
+      ____(RUNNING);
+      Serial.____(durationMs);
+      // Cancel RUNNING or acknowledge DONE.
+    }
+    else ____(IDLE);
+  }
+  if (____) enterState(DONE);
+  if (____) {
+    Serial.____(&quot;FINAL QUARTER&quot;);
+    finalPart = ____;
+  }
+}</code></pre></div></section><h2>Counting state entries</h2><section class="task" id="p4"><span class="tag">Activity 4 · Complete the code</span><h3>Count completed study cycles</h3><p class="">Use the full timer circuit and teaching task 1 fixed 5000 ms rules. Start completed at 0. Increment it only on entry to DONE, cap it at 999, and print COMPLETED followed by the count at 9600 baud. Keep the ordinary start-duration number and completion tone. Cancellation and acknowledgement do not change the count; a new start does not reset it. Preserve stable presses and deadline cancellation priority.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="p4-fig1-title p4-fig1-desc"><title id="p4-fig1-title">Practice completion count ownership</title><desc id="p4-fig1-desc">Practice completion count ownership. RUNNING expires Then Enter DONE once Then Increment below cap Then Print cumulative count Then Remain DONE without another increment </desc><rect width="1100" height="420" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice completion count ownership</tspan></text><rect x="44.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="130.0">RUNNING expires</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="98.0">1</tspan></text><path d="M353.0 125 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="130.0">Enter DONE once</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="98.0">2</tspan></text><path d="M709.0 125 H744.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="756.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="906.0" y="130.0">Increment below cap</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="772.0" y="98.0">3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#527080"><tspan x="550" y="203.0">Continue on the next row ↓</tspan></text><rect x="44.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="280.0">Print cumulative count</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="248.0">4</tspan></text><path d="M353.0 275 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="268.5">Remain DONE without another</tspan><tspan x="550.0" y="291.5">increment</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="248.0">5</tspan></text></svg><figcaption>Practice completion count ownership</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 392" role="img" aria-labelledby="p4-fig2-title p4-fig2-desc"><title id="p4-fig2-title">Practice counter lifetime</title><desc id="p4-fig2-desc">Practice counter lifetime. Startup: 0; Cancellation: Unchanged; Acknowledgement and new start: Retained; Maximum stored count: 999 </desc><rect width="1100" height="392" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice counter lifetime</tspan></text><rect x="42.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="106.0">Startup</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="154.0">0</tspan></text><rect x="392.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="550.0" y="106.0">Cancellation</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="550.0" y="154.0">Unchanged</tspan></text><rect x="742.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="900.0" y="106.0">Acknowledgement and new start</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="900.0" y="154.0">Retained</tspan></text><rect x="42.5" y="216" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="246.0">Maximum stored count</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="294.0">999</tspan></text></svg><figcaption>Practice counter lifetime</figcaption></figure><div class="codewrap"><div class="codebar"><span>Arduino sketch · fill the blanks</span><button type="button" data-copy="sketch-p4">Copy sketch</button></div><pre><code id="sketch-p4">// Startup: IDLE; timestamps zero; duration 5000 ms; raw/stable button HIGH.
+// pressed(now): accept each new LOW after 30 ms stable; keep calling every pass.
+// enterState: stop D8 tone; green D5 only RUNNING, red D6 only DONE.
+// DONE entry requests one 880 Hz, 250 ms tone unless the task specifies otherwise.
+// Serial is 9600 baud; D2 INPUT_PULLUP; D5, D6 and D8 OUTPUT.
+// completed starts at 0 and is capped at 999; only DONE entry increments it.
+enum State {
+  IDLE, RUNNING, DONE
+}
+;
+State state = ____;
+unsigned long startedAt = ____, durationMs = 5000UL;
+// Call on every loop pass. One event follows 30 ms of stable LOW.
+bool rawButton = ____, stableButton = HIGH;
+unsigned long changedAt = ____;
+bool pressed(unsigned long now) {
+  bool reading = ____;
+  if (____) {
+    rawButton = ____;
+    changedAt = ____;
+  }
+  if (____) {
+    stableButton = ____;
+    return ____;
+  }
+  return ____;
+}
+unsigned int completed = ____;
+void enterState(State next) {
+  state = ____;
+  // Reset/cancel always silences a previous sound.
+  ____(8);
+  ____(5, state == RUNNING ? HIGH : LOW);
+  ____(6, state == DONE ? HIGH : LOW);
+  if (____) {
+    if (____) ++completed;
+    Serial.____(&quot;COMPLETED &quot;);
+    Serial.____(completed);
+    ____(8, 880, 250);
+  }
+}
+void setup() {
+  ____(2, INPUT_PULLUP);
+  ____(5, OUTPUT);
+  ____(6, OUTPUT);
+  ____(8, OUTPUT);
+  Serial.____(9600);
+  ____(IDLE);
+}
+void loop() {
+  unsigned long now = ____;
+  bool event = ____;
+  // Process a press before expiry: a simultaneous cancel wins.
+  if (____) {
+    if (____) {
+      durationMs = ____;
+      startedAt = ____;
+      ____(RUNNING);
+      Serial.____(durationMs);
+      // Cancel RUNNING or acknowledge DONE.
+    }
+    else ____(IDLE);
+  }
+  if (____) enterState(DONE);
+}</code></pre></div></section><h2>Independent sound phase</h2><section class="task" id="p5"><span class="tag">Activity 5 · Build it yourself</span><h3>Create an interruptible completion cue</h3><p class="">Write a complete sketch using the full timer circuit and teaching task 2 snapshot and controls. Replace the single DONE sound with two 880 Hz chirps: 100 ms sound, 100 ms silence, 100 ms sound. Begin once on DONE entry and remain red afterward. A DONE press acknowledges to silent IDLE and abandons every remaining cue phase. RUNNING press cancels, including at the deadline. Start IDLE with both LEDs off; keep 30 ms stable press events, no delay, and fresh starts only from IDLE.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 416" role="img" aria-labelledby="p5-fig1-title p5-fig1-desc"><title id="p5-fig1-title">Practice two-part completion cue</title><desc id="p5-fig1-desc">Practice two-part completion cue. Positions: DONE entry, 100 ms, 200 ms, 300 ms, later. Piezo requested ON: 1, 0, 1, 0, 0. Red LED ON: 1, 1, 1, 1, 1 Sample/event spacing is schematic; use the labels for time values. Ideal phase boundaries; service on the first eligible loop pass.</desc><rect width="1100" height="416" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice two-part completion cue</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#526b80"><tspan x="185.0" y="78.0">DONE entry</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#526b80"><tspan x="355.0" y="78.0">100 ms</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#526b80"><tspan x="525.0" y="78.0">200 ms</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#526b80"><tspan x="695.0" y="78.0">300 ms</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#526b80"><tspan x="865.0" y="78.0">later</tspan></text><text text-anchor="start" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#203348"><tspan x="25" y="121.5">Piezo requested</tspan><tspan x="25" y="142.5">ON</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#647987"><tspan x="166" y="113.0">1</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#647987"><tspan x="166" y="155.0">0</tspan></text><path d="M185.0 98 V162" stroke="#dce7ec" stroke-width="1"/><path d="M355.0 98 V162" stroke="#dce7ec" stroke-width="1"/><path d="M525.0 98 V162" stroke="#dce7ec" stroke-width="1"/><path d="M695.0 98 V162" stroke="#dce7ec" stroke-width="1"/><path d="M865.0 98 V162" stroke="#dce7ec" stroke-width="1"/><polyline points="185.0,108 355.0,108 355.0,150 525.0,150 525.0,108 695.0,108 695.0,150 865.0,150 865.0,150 1035.0,150" stroke="#087e83" stroke-width="3" fill="none"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#203348"><tspan x="25" y="238.0">Red LED ON</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#647987"><tspan x="166" y="219.0">1</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#647987"><tspan x="166" y="261.0">0</tspan></text><path d="M185.0 204 V268" stroke="#dce7ec" stroke-width="1"/><path d="M355.0 204 V268" stroke="#dce7ec" stroke-width="1"/><path d="M525.0 204 V268" stroke="#dce7ec" stroke-width="1"/><path d="M695.0 204 V268" stroke="#dce7ec" stroke-width="1"/><path d="M865.0 204 V268" stroke="#dce7ec" stroke-width="1"/><polyline points="185.0,214 355.0,214 355.0,214 525.0,214 525.0,214 695.0,214 695.0,214 865.0,214 865.0,214 1035.0,214" stroke="#087e83" stroke-width="3" fill="none"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#526b80"><tspan x="32" y="350.0">Sample/event spacing is schematic; use the labels for time values.</tspan></text><text text-anchor="start" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#526b80"><tspan x="32" y="379.0">Ideal phase boundaries; service on the first eligible loop pass.</tspan></text></svg><figcaption>Practice two-part completion cue</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="p5-fig2-title p5-fig2-desc"><title id="p5-fig2-title">Practice acknowledgement clears future work</title><desc id="p5-fig2-desc">Practice acknowledgement clears future work. Accept press in DONE Then Return to IDLE Then Stop current sound Then Clear pending cue phase Then Wait for a new accepted start </desc><rect width="1100" height="420" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice acknowledgement clears future work</tspan></text><rect x="44.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="130.0">Accept press in DONE</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="98.0">1</tspan></text><path d="M353.0 125 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="130.0">Return to IDLE</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="98.0">2</tspan></text><path d="M709.0 125 H744.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="756.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="906.0" y="130.0">Stop current sound</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="772.0" y="98.0">3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#527080"><tspan x="550" y="203.0">Continue on the next row ↓</tspan></text><rect x="44.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="280.0">Clear pending cue phase</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="248.0">4</tspan></text><path d="M353.0 275 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="280.0">Wait for a new accepted start</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="248.0">5</tspan></text></svg><figcaption>Practice acknowledgement clears future work</figcaption></figure><label for="response-5">Your sketch</label><textarea class="response" id="response-5" spellcheck="false"></textarea></section><h2>Independent event-specific feedback</h2><section class="task" id="p6"><span class="tag">Activity 6 · Build it yourself</span><h3>Confirm acknowledgement instead of completion</h3><p class="">Write a complete sketch on the full timer circuit. Preserve teaching task 2 5000–20000 ms knob snapshot, stable 30 ms presses and press-before-expiry priority. Completion enters red DONE silently. A press in DONE returns to IDLE and requests one 700 Hz, 80 ms acknowledgement tone. RUNNING cancellation is silent, and IDLE press starts a fresh run. Entering any state first stops an old tone. Holding the button creates no repeated tones or starts. Keep the once-per-start duration print at 9600 baud and use no delay.</p><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 252" role="img" aria-labelledby="p6-fig1-title p6-fig1-desc"><title id="p6-fig1-title">Practice distinguish the accepted event</title><desc id="p6-fig1-desc">Practice distinguish the accepted event. RUNNING press: Cancel silently; DONE press: Acknowledge with 700 Hz for 80 ms; IDLE press: Start a fresh snapshot run </desc><rect width="1100" height="252" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice distinguish the accepted event</tspan></text><rect x="42.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="200.0" y="106.0">RUNNING press</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="200.0" y="154.0">Cancel silently</tspan></text><rect x="392.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="550.0" y="106.0">DONE press</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="550.0" y="140.5">Acknowledge with 700 Hz</tspan><tspan x="550.0" y="167.5">for 80 ms</tspan></text><rect x="742.5" y="76" width="315" height="115" rx="10" fill="#eaf4f5" stroke="#b1d2d2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="15" font-weight="500" fill="#567082"><tspan x="900.0" y="106.0">IDLE press</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="22" font-weight="700" fill="#085f63"><tspan x="900.0" y="140.5">Start a fresh snapshot</tspan><tspan x="900.0" y="167.5">run</tspan></text></svg><figcaption>Practice distinguish the accepted event</figcaption></figure><figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 420" role="img" aria-labelledby="p6-fig2-title p6-fig2-desc"><title id="p6-fig2-title">Practice acknowledgement action order</title><desc id="p6-fig2-desc">Practice acknowledgement action order. Remember whether old state was DONE Then Enter silent IDLE Then If it was an acknowledgement, request one cue Then Keep servicing new input </desc><rect width="1100" height="420" rx="12" fill="#f7fafb"/><text text-anchor="start" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#203348"><tspan x="32" y="36.0">Practice acknowledgement action order</tspan></text><rect x="44.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="118.5">Remember whether old state was</tspan><tspan x="194.0" y="141.5">DONE</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="98.0">1</tspan></text><path d="M353.0 125 H388.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="400.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="550.0" y="130.0">Enter silent IDLE</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="416.0" y="98.0">2</tspan></text><path d="M709.0 125 H744.0 l-9 -6 m9 6 l-9 6" stroke="#197e80" stroke-width="3" fill="none"/><rect x="756.0" y="78" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="906.0" y="118.5">If it was an acknowledgement,</tspan><tspan x="906.0" y="141.5">request one cue</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="772.0" y="98.0">3</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="14" font-weight="500" fill="#527080"><tspan x="550" y="203.0">Continue on the next row ↓</tspan></text><rect x="44.0" y="228" width="300" height="94" rx="10" fill="#eaf4f5" stroke="#9ab4c0" stroke-width="2"/><text text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="500" fill="#203348"><tspan x="194.0" y="280.0">Keep servicing new input</tspan></text><text text-anchor="middle" font-family="Arial,sans-serif" font-size="12" font-weight="500" fill="#607885"><tspan x="60.0" y="248.0">4</tspan></text></svg><figcaption>Practice acknowledgement action order</figcaption></figure><label for="response-6">Your sketch</label><textarea class="response" id="response-6" spellcheck="false"></textarea></section><p class="footer">Next: <a href="quiz-practice.html">Practice Quiz</a>. Typed responses are not saved automatically; print to keep a copy.</p></div></main><script>document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',async()=>{const c=document.getElementById(b.dataset.copy).textContent;try{await navigator.clipboard.writeText(c);b.textContent='Copied';}catch(e){const r=document.createRange();r.selectNodeContents(document.getElementById(b.dataset.copy));const s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected: press Ctrl+C';}setTimeout(()=>b.textContent='Copy sketch',2500)}));window.addEventListener('beforeprint',()=>{document.querySelectorAll('.response').forEach(t=>{let p=document.getElementById(t.id+'-print');if(!p){p=document.createElement('pre');p.id=t.id+'-print';p.className='print-response';t.after(p)}p.textContent=t.value})});document.querySelectorAll('[data-print]').forEach(b=>b.addEventListener('click',()=>window.print()));</script></body></html>

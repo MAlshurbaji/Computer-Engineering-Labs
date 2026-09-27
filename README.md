@@ -84,7 +84,7 @@ Explore practice labs in data science, programming, and digital systems, alongsi
 
 This full introductory Arduino course guides you through 15 labs, from your first LED circuit to projects using sensors, displays, motors, and a real-time clock. Learn how components work, connect circuits, and write programs that respond to everyday situations. Each lab combines clear explanations, illustrated tasks, guided builds, practice activities, and a quiz to help you build confidence through hands-on work.
 
-Follow the labs in order, experiment with the suggested changes, and apply what you learn to your own projects. Open `material.html` in your browser for the lesson and activities, then complete `quiz-practice.html`.
+Follow the labs in order, experiment with the suggested changes, and apply what you learn to your own projects. Open `material.html` in your browser for the detailed lesson and guided tasks, build your skills with the separate activities in `practice.html`, then check your understanding with `quiz-practice.html`.
 
 | Lab | Topics |
 | --- | --- |
