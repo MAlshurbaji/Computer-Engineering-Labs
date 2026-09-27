@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 12 · Transfer Learning · Quiz</title><style>
+:root{--ink:#173345;--muted:#526777;--teal:#087f83;--line:#dce5eb;--paper:#f3f6f9}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#086e88;text-underline-offset:3px}header,main,footer{max-width:1120px;margin:auto}header{padding:38px 34px 24px}main{padding:0 34px 40px}footer{padding:20px 34px 55px;color:var(--muted);font-size:14px}.eyebrow{text-transform:uppercase;font-size:13px;letter-spacing:.14em;font-weight:750;color:var(--teal)}h1{font-size:clamp(30px,4.5vw,48px);line-height:1.16;letter-spacing:-.03em;margin:.35em 0}h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:19px;margin:1.4em 0 .35em}p{margin:.6em 0 1em}nav{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0 10px}nav a,.button,button{border:1px solid #bacfd7;border-radius:7px;padding:8px 13px;background:white;color:#155565;font:600 14px/1.4 inherit;text-decoration:none;cursor:pointer}nav a[aria-current=page]{background:#126c77;color:white;border-color:#126c77}.section{background:#fff;padding:30px;border:1px solid var(--line);border-radius:15px;margin:22px 0;scroll-margin-top:18px}.task-number{font-size:13px;text-transform:uppercase;font-weight:750;letter-spacing:.08em;color:var(--teal)}.lead{font-size:19px;max-width:900px}.meta{color:var(--muted);font-size:14px}.toc{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;padding-left:25px}.objectives{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;padding-left:23px}li{margin:7px 0}.codebar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:9px 14px;background:#e9f0f4;font-size:13px;color:#33566b;border-radius:10px 10px 0 0}.codewrap{margin:20px 0}.codebar button{padding:5px 10px;font-size:12px}pre{margin:0;padding:20px;overflow:auto;background:#122d3e;color:#ecf5f8;border-radius:0 0 10px 10px;font:14px/1.7 Consolas,"Courier New",monospace;tab-size:4}code{font-family:Consolas,"Courier New",monospace}p code,li code,figcaption code{background:#eef4f6;padding:2px 5px;border-radius:4px;font-size:.91em}pre code{background:none;padding:0}.diagram-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:24px 0}figure{margin:12px 0 24px}svg{display:block;width:100%;height:auto}figcaption{font-size:14px;line-height:1.55;color:var(--muted);padding:9px 3px 0}img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}.observe{border-left:4px solid var(--teal);padding:2px 18px;background:#f3faf9}.experiment{background:#f8f6ed;padding:3px 18px 12px;border-radius:10px}.options{list-style-type:upper-alpha}.options li{padding:7px 10px;border-bottom:1px solid var(--line)}.quizitem{margin:28px 0;padding-bottom:22px;border-bottom:1px solid var(--line)}.quizitem h2{font-size:20px}details{margin:16px 0}summary{cursor:pointer;font-weight:650}.status{font-size:13px;min-height:24px}.source-list{font-size:14px}.pill{display:inline-block;margin-right:7px;padding:3px 9px;background:#e5eff1;border-radius:20px;font-size:13px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #c77723;outline-offset:4px}@media(max-width:700px){header{padding:24px 18px 12px}main{padding:0 12px 25px}.section{padding:22px 16px}.toc,.objectives{grid-template-columns:1fr}pre{font-size:12px;padding:14px}h2{font-size:24px}}@media print{body{background:white;font-size:11pt}header,main,footer{max-width:none;padding:0}nav,button,.status{display:none}.section{border:0;border-radius:0;padding:10px 0;margin:10px 0}.task{break-before:page}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#102a3b;background:#f0f3f5;font-size:9pt}figure{break-inside:avoid}h2,h3{break-after:avoid}a{color:inherit}details{display:block}}
+</style></head><body>
+<header><a href="../../README.md">Computer Science Labs</a><p class="eyebrow">Deep Learning and CNN · Lab 12 · Quiz</p><h1>Transfer Learning</h1><nav aria-label="Lab files"><a href="material.html">Material</a><a href="practice.html">Practice</a><a href="quiz-practice.html" aria-current="page">Quiz</a></nav><div id="copy-status" class="status" role="status" aria-live="polite"></div></header><main><section class="section"><p>Choose one answer for questions 1–6. Write Python code for questions 7–8.</p><article class="quizitem" id="q1"><h2>1. A new network has the same layer shapes as a trained network but newly sampled weights. What was reused?</h2><ol class="options"><li>Target labels</li><li>Learned source knowledge</li><li>Architecture only</li><li>Optimizer history</li></ol></article><article class="quizitem" id="q2"><h2>2. A cached feature array was computed before the extractor was fine-tuned. What is required to represent the updated extractor?</h2><ol class="options"><li>Change its dtype only.</li><li>Shuffle its columns.</li><li>Recompute features from the images.</li><li>Rename the array.</li></ol></article><article class="quizitem" id="q3"><h2>3. Why keep a copy of extractor weights before training a new head with the extractor frozen?</h2><ol class="options"><li>To guarantee target accuracy.</li><li>To replace validation data.</li><li>To change the class order.</li><li>To directly verify that the extractor did not update.</li></ol></article><article class="quizitem" id="q4"><h2>4. A source model labels cats/dogs, while a target labels bowls/plates. Which output component normally needs a new target mapping?</h2><ol class="options"><li>The file extension</li><li>The pixel dtype</li><li>The input batch dimension</li><li>The classification head</li></ol></article><article class="quizitem" id="q5"><h2>5. A transfer run used six source and six target epochs; a scratch run used six target epochs. Which report is accurate?</h2><ol class="options"><li>Target epochs matched; transfer also required source training.</li><li>Scratch used a pretrained extractor.</li><li>Both used the same total training work.</li><li>Source training is never computational work.</li></ol></article><article class="quizitem" id="q6"><h2>6. After changing a Keras extractor from frozen to trainable, which next step makes the new training configuration explicit?</h2><ol class="options"><li>Delete the validation labels.</li><li>Recompile with a suitable optimizer before fitting.</li><li>Rename the model.</li><li>Call argmax on its outputs.</li></ol></article><details><summary>Shared Python setup</summary><p>Run this once in a fresh notebook before each activity. Complete and run one activity at a time.</p><p>Run setup before the sequential teaching tasks; each practice and coding quiz starts independently after setup.</p><div class="codewrap"><div class="codebar"><span>Python · shared setup</span><button type="button" data-copy="setup-code">Copy code</button></div><pre><code id="setup-code">import numpy as np
+import tensorflow as tf
+import keras
+import matplotlib.pyplot as plt
+keras.utils.set_random_seed(112)
+rng = np.random.default_rng(112)
+class_names = [&quot;cup&quot;, &quot;bottle&quot;]
+
+def batches(x, y, batch_size=16, shuffle=False):
+    ds = tf.data.Dataset.from_tensor_slices((x, y))
+    if shuffle:
+        ds = ds.shuffle(len(x), seed=123, reshuffle_each_iteration=True)
+    options = tf.data.Options()
+    options.threading.private_threadpool_size = 1
+    options.threading.max_intra_op_parallelism = 1
+    return ds.batch(batch_size).with_options(options)
+
+# A group is one drawn object; its two noisy views must stay together.
+def pictures(group_ids, tint=False):
+    images, labels, groups = [], [], []
+    for gid in group_ids:
+        local = np.random.default_rng(int(gid) + 800)
+        label = int(gid) % 2
+        shift = int(local.integers(-1, 2))
+        base = np.zeros((16, 16), dtype=np.float32)
+        if label == 0:
+            base[6:13, 4+shift:10+shift] = 0.85
+            base[7:11, 10+shift:12+shift] = 0.85
+            base[8:10, 10+shift:11+shift] = 0
+        else:
+            base[3:6, 7+shift:9+shift] = 0.85
+            base[6:13, 5+shift:11+shift] = 0.85
+        for view in range(2):
+            image = np.repeat(base[..., None], 3, axis=-1)
+            if tint:
+                image = image * np.array([0.7, 0.9, 1.0], dtype=np.float32)
+            image = np.clip(image + local.normal(0, 0.025, image.shape), 0, 1)
+            images.append(image.astype(&quot;float32&quot;))
+            labels.append(label)
+            groups.append(gid)
+    return np.stack(images), np.array(labels, dtype=&quot;int32&quot;), np.array(groups)
+
+train_ids = np.arange(0, 32)
+val_ids = np.arange(32, 40)
+test_ids = np.arange(40, 48)
+x_train, y_train, g_train = pictures(train_ids)
+x_val, y_val, g_val = pictures(val_ids)
+x_test, y_test, g_test = pictures(test_ids)
+
+def classifier(augmentation=None):
+    inputs = keras.Input((16, 16, 3))
+    z = inputs if augmentation is None else augmentation(inputs)
+    z = keras.layers.Conv2D(4, 3, padding=&quot;same&quot;, activation=&quot;relu&quot;, name=&quot;features&quot;)(z)
+    z = keras.layers.MaxPooling2D()(z)
+    z = keras.layers.Flatten()(z)
+    outputs = keras.layers.Dense(2, name=&quot;scores&quot;)(z)
+    model = keras.Model(inputs, outputs)
+    model.compile(optimizer=keras.optimizers.Adam(0.005),
+                  loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                  metrics=[&quot;accuracy&quot;])
+    return model
+
+# Target groups are new objects with a blue-tinted rendering.
+tx_train, ty_train, tg_train = pictures(np.arange(200,224), tint=True)
+tx_val, ty_val, tg_val = pictures(np.arange(224,232), tint=True)
+tx_test, ty_test, tg_test = pictures(np.arange(232,240), tint=True)
+
+def source_models():
+    base = keras.Sequential([
+        keras.Input((16,16,3)),
+        keras.layers.Conv2D(4,3,padding=&quot;same&quot;,activation=&quot;relu&quot;),
+        keras.layers.MaxPooling2D(),
+        keras.layers.Flatten()
+    ], name=&quot;learned_features&quot;)
+    inputs = keras.Input((16,16,3))
+    outputs = keras.layers.Dense(2)(base(inputs))
+    source = keras.Model(inputs,outputs)
+    source.compile(optimizer=keras.optimizers.Adam(0.005),
+        loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+        metrics=[&quot;accuracy&quot;])
+    return base, source
+
+def target_model(base, rate=0.003):
+    inputs = keras.Input((16,16,3))
+    outputs = keras.layers.Dense(2)(base(inputs))
+    model = keras.Model(inputs,outputs)
+    model.compile(optimizer=keras.optimizers.Adam(rate),
+        loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+        metrics=[&quot;accuracy&quot;])
+    return model</code></pre></div></details><article class="quizitem" id="q7"><h2>7. Pretrain a fresh source model for three epochs. Copy its extractor weights into a second freshly constructed extractor with set_weights. Store max_difference between the two extractors&#x27; outputs on tx_val in inference mode; no target training is required.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q7-code">Copy code</button></div><pre><code id="q7-code"># Write a standalone solution after running setup.</code></pre></div></article><article class="quizitem" id="q8"><h2>8. Pretrain three source epochs, freeze the extractor, and train a new target head for two epochs. Save the complete target model in a fresh temporary directory, reload it, and store before_logits and after_logits for tx_val. Print their maximum absolute difference.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q8-code">Copy code</button></div><pre><code id="q8-code"># Write a standalone solution after running setup.</code></pre></div></article></section></main><footer>Mohammad Alshurbaji · Deep Learning and CNN · Lab 12</footer><script>document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const source=document.getElementById(b.dataset.copy);try{await navigator.clipboard.writeText(source.textContent);b.textContent='Copied';setTimeout(()=>b.textContent='Copy code',1400)}catch(_){const r=document.createRange();r.selectNodeContents(source);const s=window.getSelection();s.removeAllRanges();s.addRange(r);document.getElementById('copy-status').textContent='Code selected. Press Ctrl+C (or Command+C) to copy.'}});</script></body></html>

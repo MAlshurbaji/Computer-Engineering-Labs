@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 10 · Dataset Quality and Splits · Quiz</title><style>
+:root{--ink:#173345;--muted:#526777;--teal:#087f83;--line:#dce5eb;--paper:#f3f6f9}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#086e88;text-underline-offset:3px}header,main,footer{max-width:1120px;margin:auto}header{padding:38px 34px 24px}main{padding:0 34px 40px}footer{padding:20px 34px 55px;color:var(--muted);font-size:14px}.eyebrow{text-transform:uppercase;font-size:13px;letter-spacing:.14em;font-weight:750;color:var(--teal)}h1{font-size:clamp(30px,4.5vw,48px);line-height:1.16;letter-spacing:-.03em;margin:.35em 0}h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:19px;margin:1.4em 0 .35em}p{margin:.6em 0 1em}nav{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0 10px}nav a,.button,button{border:1px solid #bacfd7;border-radius:7px;padding:8px 13px;background:white;color:#155565;font:600 14px/1.4 inherit;text-decoration:none;cursor:pointer}nav a[aria-current=page]{background:#126c77;color:white;border-color:#126c77}.section{background:#fff;padding:30px;border:1px solid var(--line);border-radius:15px;margin:22px 0;scroll-margin-top:18px}.task-number{font-size:13px;text-transform:uppercase;font-weight:750;letter-spacing:.08em;color:var(--teal)}.lead{font-size:19px;max-width:900px}.meta{color:var(--muted);font-size:14px}.toc{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;padding-left:25px}.objectives{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;padding-left:23px}li{margin:7px 0}.codebar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:9px 14px;background:#e9f0f4;font-size:13px;color:#33566b;border-radius:10px 10px 0 0}.codewrap{margin:20px 0}.codebar button{padding:5px 10px;font-size:12px}pre{margin:0;padding:20px;overflow:auto;background:#122d3e;color:#ecf5f8;border-radius:0 0 10px 10px;font:14px/1.7 Consolas,"Courier New",monospace;tab-size:4}code{font-family:Consolas,"Courier New",monospace}p code,li code,figcaption code{background:#eef4f6;padding:2px 5px;border-radius:4px;font-size:.91em}pre code{background:none;padding:0}.diagram-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:24px 0}figure{margin:12px 0 24px}svg{display:block;width:100%;height:auto}figcaption{font-size:14px;line-height:1.55;color:var(--muted);padding:9px 3px 0}img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}.observe{border-left:4px solid var(--teal);padding:2px 18px;background:#f3faf9}.experiment{background:#f8f6ed;padding:3px 18px 12px;border-radius:10px}.options{list-style-type:upper-alpha}.options li{padding:7px 10px;border-bottom:1px solid var(--line)}.quizitem{margin:28px 0;padding-bottom:22px;border-bottom:1px solid var(--line)}.quizitem h2{font-size:20px}details{margin:16px 0}summary{cursor:pointer;font-weight:650}.status{font-size:13px;min-height:24px}.source-list{font-size:14px}.pill{display:inline-block;margin-right:7px;padding:3px 9px;background:#e5eff1;border-radius:20px;font-size:13px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #c77723;outline-offset:4px}@media(max-width:700px){header{padding:24px 18px 12px}main{padding:0 12px 25px}.section{padding:22px 16px}.toc,.objectives{grid-template-columns:1fr}pre{font-size:12px;padding:14px}h2{font-size:24px}}@media print{body{background:white;font-size:11pt}header,main,footer{max-width:none;padding:0}nav,button,.status{display:none}.section{border:0;border-radius:0;padding:10px 0;margin:10px 0}.task{break-before:page}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#102a3b;background:#f0f3f5;font-size:9pt}figure{break-inside:avoid}h2,h3{break-after:avoid}a{color:inherit}details{display:block}}
+</style></head><body>
+<header><a href="../../README.md">Computer Science Labs</a><p class="eyebrow">Image Processing · Lab 10 · Quiz</p><h1>Dataset Quality and Splits</h1><nav aria-label="Lab files"><a href="material.html">Material</a><a href="practice.html">Practice</a><a href="quiz-practice.html" aria-current="page">Quiz</a></nav><div id="copy-status" class="status" role="status" aria-live="polite"></div></header><main><section class="section"><p>Choose one answer for questions 1–6. Write Python code for questions 7–8.</p><article class="quizitem" id="q1"><h2>1. Two RGB uint8 arrays have the same byte sequence but shapes (10,20,3) and (20,10,3). Why should an exact-pixel fingerprint include shape as well as bytes?</h2><ol class="options"><li>The same byte sequence can represent different spatial arrangements.</li><li>A hash cannot accept byte sequences.</li><li>Shape proves the images belong to different object groups.</li><li>Shape determines the correct class label.</li></ol></article><article class="quizitem" id="q2"><h2>2. Two views of the same mug have different pixel hashes. One is in training and the other in test; the goal is evaluation on unseen mugs. What needs correction?</h2><ol class="options"><li>The training image should be resized until its hash matches.</li><li>Nothing, because different hashes guarantee independence.</li><li>The object group must be assigned to one partition despite the differing hashes.</li><li>Only the displayed image titles.</li></ol></article><article class="quizitem" id="q3"><h2>3. A valid drawing of a plain wall has low edge-response variance. A review rule flags that number. Which action follows from the evidence alone?</h2><ol class="options"><li>Treat the number as a probability of label error.</li><li>Delete it as a proven corrupt file.</li><li>Relabel it as a blurred book.</li><li>Inspect it in task context and retain the measurement and reason.</li></ol></article><article class="quizitem" id="q4"><h2>4. Class A has 12 views of 3 objects; class B has 12 views of 6 objects. Which statement describes this inventory?</h2><ol class="options"><li>Image counts are balanced, but object-group counts differ.</li><li>Every view can be independently assigned to any split.</li><li>Class B must have higher future accuracy.</li><li>Both classes have the same number of independent objects.</li></ol></article><article class="quizitem" id="q5"><h2>5. A tiny grayscale descriptor assigns a low distance to two differently coloured book covers. What limitation is relevant?</h2><ol class="options"><li>Both books must be exact pixel duplicates.</li><li>The descriptor discarded colour and can flag distinct objects as similar.</li><li>Grayscale descriptors retain every RGB distinction.</li><li>Low distance proves the book IDs are wrong.</li></ol></article><article class="quizitem" id="q6"><h2>6. One source fails full decoding during an inventory. Which record preserves the audit without inventing evidence?</h2><ol class="options"><li>Remove its ID so all counts refer only to successful reads.</li><li>Retain its source ID, failure status and reason in quarantine.</li><li>Replace it with a black image under the original label.</li><li>Assign it to the test split because it is difficult.</li></ol></article><details><summary>Shared Python setup</summary><p>Run this once in a fresh notebook before each activity. Complete and run one activity at a time.</p><p>Run once. records contains 24 original 160-by-128 drawings: two views of each of six books and six mugs. payloads adds varied encoded inputs and one deliberate decode failure.</p><div class="codewrap"><div class="codebar"><span>Python · shared setup</span><button type="button" data-copy="setup-code">Copy code</button></div><pre><code id="setup-code">import io
+import hashlib
+import numpy as np
+import cv2
+from PIL import Image, ImageDraw, ImageOps, UnidentifiedImageError
+import matplotlib.pyplot as plt
+cv2.setNumThreads(1)
+rng = np.random.default_rng(210)
+
+# Original drawings represent two existing views of each of twelve household objects.
+# Object groups, not individual views, are the independent units in this toy collection.
+def draw_object(kind,index,view):
+    height,width = 128,160
+    yy,xx = np.mgrid[:height,:width]
+    generator = np.random.default_rng(410+index+(100 if kind==&quot;mug&quot; else 0))
+    grain = generator.normal(0,1.1,(height,width))+4*np.sin(yy*0.6)
+    base = 174+18*xx/(width-1)+grain
+    background = np.stack([base+16,base,base-22],axis=-1)
+    image = Image.fromarray(np.clip(np.rint(background),0,255).astype(np.uint8))
+    draw = ImageDraw.Draw(image)
+    dx,dy = 3*view,-2*view
+    if kind==&quot;book&quot;:
+        palette = [(166,50,58),(48,85,166),(58,116,77),(128,65,133),(151,100,35),(50,116,127)]
+        color = palette[index-1]
+        draw.rectangle((34+dx,13+dy,111+dx,110+dy),fill=color,outline=(35,37,43),width=2)
+        draw.rectangle((35+dx,15+dy,44+dx,108+dy),fill=(46,44,48))
+        draw.rectangle((52+dx,28+dy,100+dx,53+dy),fill=(240,231,205))
+        draw.text((57+dx,34+dy),&quot;NOTES&quot;,fill=(43,44,51))
+        for y in range(91,107,3):
+            draw.line((47+dx,y+dy,108+dx,y+dy),fill=(228,223,202),width=1)
+    else:
+        palette = [(232,229,210),(149,197,202),(230,188,136),(185,178,219),(194,214,162),(223,164,168)]
+        color = palette[index-1]
+        draw.ellipse((105+dx,49+dy,141+dx,91+dy),outline=color,width=8)
+        draw.rounded_rectangle((45+dx,36+dy,112+dx,110+dy),radius=12,fill=color,outline=(86,89,91),width=2)
+        draw.ellipse((45+dx,25+dy,112+dx,49+dy),fill=(240,235,216),outline=(79,77,65),width=2)
+        draw.ellipse((51+dx,30+dy,106+dx,43+dy),fill=(86,49,28))
+        draw.text((66+dx,66+dy),&quot;TEA&quot;,fill=(50,79,93))
+        draw.line((53+dx,49+dy,53+dx,95+dy),fill=(248,246,228),width=2)
+    draw.rectangle((5,115,72,125),fill=(230,220,180))
+    draw.text((9,115),f&quot;item {index}&quot;,fill=(50,47,36))
+    return np.asarray(image).copy()
+
+records = []
+for kind in (&quot;book&quot;,&quot;mug&quot;):
+    for index in range(1,7):
+        group = f&quot;{kind}{index:02}&quot;
+        for view in (0,1):
+            records.append({&quot;id&quot;:f&quot;{group}-v{view+1}&quot;,&quot;group&quot;:group,&quot;label&quot;:kind,&quot;image&quot;:draw_object(kind,index,view)})
+rgb = records[0][&quot;image&quot;].copy()
+h,w = rgb.shape[:2]
+# Varied source modes/sizes for the audit exercises; no external image files are used.
+rgba_source = Image.fromarray(rgb).convert(&quot;RGBA&quot;)
+rgba_source.putalpha(190)
+mode_sources = [
+    Image.fromarray(rgb),
+    Image.fromarray(rgb).convert(&quot;L&quot;),
+    rgba_source,
+    Image.fromarray(cv2.resize(rgb,(120,96),interpolation=cv2.INTER_AREA))
+]
+payloads = {}
+for name,image in zip([&quot;book.png&quot;,&quot;gray.png&quot;,&quot;alpha.png&quot;,&quot;small.png&quot;],mode_sources):
+    stream = io.BytesIO()
+    image.save(stream,format=&quot;PNG&quot;)
+    payloads[name] = stream.getvalue()
+payloads[&quot;broken.png&quot;] = b&quot;not an encoded image&quot;</code></pre></div></details><article class="quizitem" id="q7"><h2>7. Write find_split_conflicts(rows). Each row has id, group and split; IDs are unique, and split is train, validation or test. Return a dictionary containing only groups appearing in more than one split; each value is a sorted list of that group&#x27;s split names. An empty input returns {}. Demonstrate it on [{&#x27;id&#x27;:&#x27;a1&#x27;,&#x27;group&#x27;:&#x27;cupA&#x27;,&#x27;split&#x27;:&#x27;train&#x27;},{&#x27;id&#x27;:&#x27;a2&#x27;,&#x27;group&#x27;:&#x27;cupA&#x27;,&#x27;split&#x27;:&#x27;validation&#x27;},{&#x27;id&#x27;:&#x27;b1&#x27;,&#x27;group&#x27;:&#x27;cupB&#x27;,&#x27;split&#x27;:&#x27;test&#x27;},{&#x27;id&#x27;:&#x27;b2&#x27;,&#x27;group&#x27;:&#x27;cupB&#x27;,&#x27;split&#x27;:&#x27;test&#x27;}] as report. Do not change the rows.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q7-code">Copy code</button></div><pre><code id="q7-code"># Write your solution here.</code></pre></div></article><article class="quizitem" id="q8"><h2>8. Create samples with three records: ID &#x27;original&#x27;, label &#x27;book&#x27;, image records[0][&#x27;image&#x27;]; ID &#x27;copy&#x27;, label &#x27;mug&#x27;, an independent exact copy of that image; ID &#x27;other&#x27;, label &#x27;mug&#x27;, image records[12][&#x27;image&#x27;]. Group candidates by SHA-256 of a header f&#x27;RGB|{image.shape}|{image.dtype.str}|&#x27; encoded as ASCII followed by C-order pixel bytes. Confirm exact array equality within each candidate group. Store conflicts as a list of sorted ID lists only for equal-pixel groups that have conflicting labels. Keep all samples and do not choose a corrected label.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q8-code">Copy code</button></div><pre><code id="q8-code"># Write your solution here.</code></pre></div></article></section></main><footer>Mohammad Alshurbaji · Image Processing · Lab 10</footer><script>document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const source=document.getElementById(b.dataset.copy);try{await navigator.clipboard.writeText(source.textContent);b.textContent='Copied';setTimeout(()=>b.textContent='Copy code',1400)}catch(_){const r=document.createRange();r.selectNodeContents(source);const s=window.getSelection();s.removeAllRanges();s.addRange(r);document.getElementById('copy-status').textContent='Code selected. Press Ctrl+C (or Command+C) to copy.'}});</script></body></html>

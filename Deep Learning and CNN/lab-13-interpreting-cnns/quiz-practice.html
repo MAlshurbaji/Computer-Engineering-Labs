@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 13 · Interpreting CNNs · Quiz</title><style>
+:root{--ink:#173345;--muted:#526777;--teal:#087f83;--line:#dce5eb;--paper:#f3f6f9}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#086e88;text-underline-offset:3px}header,main,footer{max-width:1120px;margin:auto}header{padding:38px 34px 24px}main{padding:0 34px 40px}footer{padding:20px 34px 55px;color:var(--muted);font-size:14px}.eyebrow{text-transform:uppercase;font-size:13px;letter-spacing:.14em;font-weight:750;color:var(--teal)}h1{font-size:clamp(30px,4.5vw,48px);line-height:1.16;letter-spacing:-.03em;margin:.35em 0}h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:19px;margin:1.4em 0 .35em}p{margin:.6em 0 1em}nav{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0 10px}nav a,.button,button{border:1px solid #bacfd7;border-radius:7px;padding:8px 13px;background:white;color:#155565;font:600 14px/1.4 inherit;text-decoration:none;cursor:pointer}nav a[aria-current=page]{background:#126c77;color:white;border-color:#126c77}.section{background:#fff;padding:30px;border:1px solid var(--line);border-radius:15px;margin:22px 0;scroll-margin-top:18px}.task-number{font-size:13px;text-transform:uppercase;font-weight:750;letter-spacing:.08em;color:var(--teal)}.lead{font-size:19px;max-width:900px}.meta{color:var(--muted);font-size:14px}.toc{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;padding-left:25px}.objectives{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;padding-left:23px}li{margin:7px 0}.codebar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:9px 14px;background:#e9f0f4;font-size:13px;color:#33566b;border-radius:10px 10px 0 0}.codewrap{margin:20px 0}.codebar button{padding:5px 10px;font-size:12px}pre{margin:0;padding:20px;overflow:auto;background:#122d3e;color:#ecf5f8;border-radius:0 0 10px 10px;font:14px/1.7 Consolas,"Courier New",monospace;tab-size:4}code{font-family:Consolas,"Courier New",monospace}p code,li code,figcaption code{background:#eef4f6;padding:2px 5px;border-radius:4px;font-size:.91em}pre code{background:none;padding:0}.diagram-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:24px 0}figure{margin:12px 0 24px}svg{display:block;width:100%;height:auto}figcaption{font-size:14px;line-height:1.55;color:var(--muted);padding:9px 3px 0}img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}.observe{border-left:4px solid var(--teal);padding:2px 18px;background:#f3faf9}.experiment{background:#f8f6ed;padding:3px 18px 12px;border-radius:10px}.options{list-style-type:upper-alpha}.options li{padding:7px 10px;border-bottom:1px solid var(--line)}.quizitem{margin:28px 0;padding-bottom:22px;border-bottom:1px solid var(--line)}.quizitem h2{font-size:20px}details{margin:16px 0}summary{cursor:pointer;font-weight:650}.status{font-size:13px;min-height:24px}.source-list{font-size:14px}.pill{display:inline-block;margin-right:7px;padding:3px 9px;background:#e5eff1;border-radius:20px;font-size:13px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #c77723;outline-offset:4px}@media(max-width:700px){header{padding:24px 18px 12px}main{padding:0 12px 25px}.section{padding:22px 16px}.toc,.objectives{grid-template-columns:1fr}pre{font-size:12px;padding:14px}h2{font-size:24px}}@media print{body{background:white;font-size:11pt}header,main,footer{max-width:none;padding:0}nav,button,.status{display:none}.section{border:0;border-radius:0;padding:10px 0;margin:10px 0}.task{break-before:page}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#102a3b;background:#f0f3f5;font-size:9pt}figure{break-inside:avoid}h2,h3{break-after:avoid}a{color:inherit}details{display:block}}
+</style></head><body>
+<header><a href="../../README.md">Computer Science Labs</a><p class="eyebrow">Deep Learning and CNN · Lab 13 · Quiz</p><h1>Interpreting CNNs</h1><nav aria-label="Lab files"><a href="material.html">Material</a><a href="practice.html">Practice</a><a href="quiz-practice.html" aria-current="page">Quiz</a></nav><div id="copy-status" class="status" role="status" aria-live="polite"></div></header><main><section class="section"><p>Choose one answer for questions 1–6. Write Python code for questions 7–8.</p><article class="quizitem" id="q1"><h2>1. Two heatmaps use the same image but different output-class targets. Why may they differ?</h2><ol class="options"><li>The image file must have changed.</li><li>All heatmaps are random.</li><li>They describe sensitivity of different score coordinates.</li><li>A target index only changes the title.</li></ol></article><article class="quizitem" id="q2"><h2>2. What information is lost by taking the absolute value of input gradients?</h2><ol class="options"><li>The selected target index</li><li>Pixel coordinates</li><li>Input dimensions</li><li>Whether a small positive pixel change raises or lowers the score</li></ol></article><article class="quizitem" id="q3"><h2>3. A feature map has a bright region. What does that establish by itself?</h2><ol class="options"><li>The channel strongly activates there for that input.</li><li>The model identified a named physical part.</li><li>The prediction is correct.</li><li>That region is the sole cause of the class.</li></ol></article><article class="quizitem" id="q4"><h2>4. A patch cover increases the fixed target logit. Using original minus covered, what sign should the reported drop have?</h2><ol class="options"><li>Negative</li><li>Undefined</li><li>Positive</li><li>Always zero</li></ol></article><article class="quizitem" id="q5"><h2>5. A normalized map has maximum one. Which statement is justified?</h2><ol class="options"><li>Its model is calibrated.</li><li>Its display was scaled relative to its own maximum.</li><li>It explains every pixel causally.</li><li>Its largest raw gradient was one.</li></ol></article><article class="quizitem" id="q6"><h2>6. Why should a Grad-CAM report name the chosen convolution layer?</h2><ol class="options"><li>Layer names determine ground-truth labels.</li><li>Only the earliest layer is valid.</li><li>All layers have identical resolution.</li><li>The chosen features and spatial resolution affect the map.</li></ol></article><details><summary>Shared Python setup</summary><p>Run this once in a fresh notebook before each activity. Complete and run one activity at a time.</p><p>Run setup and teaching tasks sequentially; independent exercises train their own small model after setup.</p><div class="codewrap"><div class="codebar"><span>Python · shared setup</span><button type="button" data-copy="setup-code">Copy code</button></div><pre><code id="setup-code">import numpy as np
+import tensorflow as tf
+import keras
+import matplotlib.pyplot as plt
+keras.utils.set_random_seed(113)
+rng = np.random.default_rng(113)
+class_names = [&quot;cup&quot;, &quot;bottle&quot;]
+
+def batches(x, y, batch_size=16, shuffle=False):
+    ds = tf.data.Dataset.from_tensor_slices((x, y))
+    if shuffle:
+        ds = ds.shuffle(len(x), seed=123, reshuffle_each_iteration=True)
+    options = tf.data.Options()
+    options.threading.private_threadpool_size = 1
+    options.threading.max_intra_op_parallelism = 1
+    return ds.batch(batch_size).with_options(options)
+
+# A group is one drawn object; its two noisy views must stay together.
+def pictures(group_ids, tint=False):
+    images, labels, groups = [], [], []
+    for gid in group_ids:
+        local = np.random.default_rng(int(gid) + 800)
+        label = int(gid) % 2
+        shift = int(local.integers(-1, 2))
+        base = np.zeros((16, 16), dtype=np.float32)
+        if label == 0:
+            base[6:13, 4+shift:10+shift] = 0.85
+            base[7:11, 10+shift:12+shift] = 0.85
+            base[8:10, 10+shift:11+shift] = 0
+        else:
+            base[3:6, 7+shift:9+shift] = 0.85
+            base[6:13, 5+shift:11+shift] = 0.85
+        for view in range(2):
+            image = np.repeat(base[..., None], 3, axis=-1)
+            if tint:
+                image = image * np.array([0.7, 0.9, 1.0], dtype=np.float32)
+            image = np.clip(image + local.normal(0, 0.025, image.shape), 0, 1)
+            images.append(image.astype(&quot;float32&quot;))
+            labels.append(label)
+            groups.append(gid)
+    return np.stack(images), np.array(labels, dtype=&quot;int32&quot;), np.array(groups)
+
+train_ids = np.arange(0, 32)
+val_ids = np.arange(32, 40)
+test_ids = np.arange(40, 48)
+x_train, y_train, g_train = pictures(train_ids)
+x_val, y_val, g_val = pictures(val_ids)
+x_test, y_test, g_test = pictures(test_ids)
+
+def classifier(augmentation=None):
+    inputs = keras.Input((16, 16, 3))
+    z = inputs if augmentation is None else augmentation(inputs)
+    z = keras.layers.Conv2D(4, 3, padding=&quot;same&quot;, activation=&quot;relu&quot;, name=&quot;features&quot;)(z)
+    z = keras.layers.MaxPooling2D()(z)
+    z = keras.layers.Flatten()(z)
+    outputs = keras.layers.Dense(2, name=&quot;scores&quot;)(z)
+    model = keras.Model(inputs, outputs)
+    model.compile(optimizer=keras.optimizers.Adam(0.005),
+                  loss=keras.losses.SparseCategoricalCrossentropy(from_logits=True),
+                  metrics=[&quot;accuracy&quot;])
+    return model
+
+# Interpretation helpers operate on a supplied model; they do not train one.
+def input_saliency(model, images, target):
+    tensor = tf.convert_to_tensor(images)
+    with tf.GradientTape() as tape:
+        tape.watch(tensor)
+        score = tf.reduce_sum(model(tensor, training=False)[:, target])
+    gradients = tape.gradient(score, tensor)
+    return tf.reduce_max(tf.abs(gradients), axis=-1).numpy()
+
+def scale_map(values):
+    values = np.asarray(values, dtype=np.float32)
+    maximum = float(values.max())
+    return values / maximum if maximum &gt; 0 else np.zeros_like(values)</code></pre></div></details><article class="quizitem" id="q7"><h2>7. Train a fresh classifier for three epochs. Compute raw saliency for target zero on the first three validation images. Store per_image_max as the maximum over each image&#x27;s spatial coordinates, preserving three separate values.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q7-code">Copy code</button></div><pre><code id="q7-code"># Write a standalone solution after running setup.</code></pre></div></article><article class="quizitem" id="q8"><h2>8. Train three epochs. For the first validation image, fix target to its original prediction. Compare the target logit with two separate covers: top half black and bottom half black. Store drops in that order; keep the original image unchanged.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q8-code">Copy code</button></div><pre><code id="q8-code"># Write a standalone solution after running setup.</code></pre></div></article></section></main><footer>Mohammad Alshurbaji · Deep Learning and CNN · Lab 13</footer><script>document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const source=document.getElementById(b.dataset.copy);try{await navigator.clipboard.writeText(source.textContent);b.textContent='Copied';setTimeout(()=>b.textContent='Copy code',1400)}catch(_){const r=document.createRange();r.selectNodeContents(source);const s=window.getSelection();s.removeAllRanges();s.addRange(r);document.getElementById('copy-status').textContent='Code selected. Press Ctrl+C (or Command+C) to copy.'}});</script></body></html>

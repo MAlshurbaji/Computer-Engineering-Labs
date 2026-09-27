@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lab 10 · Evaluating Image Classifiers · Quiz</title><style>
+:root{--ink:#173345;--muted:#526777;--teal:#087f83;--line:#dce5eb;--paper:#f3f6f9}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}a{color:#086e88;text-underline-offset:3px}header,main,footer{max-width:1120px;margin:auto}header{padding:38px 34px 24px}main{padding:0 34px 40px}footer{padding:20px 34px 55px;color:var(--muted);font-size:14px}.eyebrow{text-transform:uppercase;font-size:13px;letter-spacing:.14em;font-weight:750;color:var(--teal)}h1{font-size:clamp(30px,4.5vw,48px);line-height:1.16;letter-spacing:-.03em;margin:.35em 0}h2{font-size:28px;line-height:1.3;margin:0 0 16px}h3{font-size:19px;margin:1.4em 0 .35em}p{margin:.6em 0 1em}nav{display:flex;gap:9px;flex-wrap:wrap;margin:24px 0 10px}nav a,.button,button{border:1px solid #bacfd7;border-radius:7px;padding:8px 13px;background:white;color:#155565;font:600 14px/1.4 inherit;text-decoration:none;cursor:pointer}nav a[aria-current=page]{background:#126c77;color:white;border-color:#126c77}.section{background:#fff;padding:30px;border:1px solid var(--line);border-radius:15px;margin:22px 0;scroll-margin-top:18px}.task-number{font-size:13px;text-transform:uppercase;font-weight:750;letter-spacing:.08em;color:var(--teal)}.lead{font-size:19px;max-width:900px}.meta{color:var(--muted);font-size:14px}.toc{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;padding-left:25px}.objectives{display:grid;grid-template-columns:1fr 1fr;gap:8px 25px;padding-left:23px}li{margin:7px 0}.codebar{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:9px 14px;background:#e9f0f4;font-size:13px;color:#33566b;border-radius:10px 10px 0 0}.codewrap{margin:20px 0}.codebar button{padding:5px 10px;font-size:12px}pre{margin:0;padding:20px;overflow:auto;background:#122d3e;color:#ecf5f8;border-radius:0 0 10px 10px;font:14px/1.7 Consolas,"Courier New",monospace;tab-size:4}code{font-family:Consolas,"Courier New",monospace}p code,li code,figcaption code{background:#eef4f6;padding:2px 5px;border-radius:4px;font-size:.91em}pre code{background:none;padding:0}.diagram-grid{display:grid;grid-template-columns:1fr;gap:14px;margin:24px 0}figure{margin:12px 0 24px}svg{display:block;width:100%;height:auto}figcaption{font-size:14px;line-height:1.55;color:var(--muted);padding:9px 3px 0}img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px}.observe{border-left:4px solid var(--teal);padding:2px 18px;background:#f3faf9}.experiment{background:#f8f6ed;padding:3px 18px 12px;border-radius:10px}.options{list-style-type:upper-alpha}.options li{padding:7px 10px;border-bottom:1px solid var(--line)}.quizitem{margin:28px 0;padding-bottom:22px;border-bottom:1px solid var(--line)}.quizitem h2{font-size:20px}details{margin:16px 0}summary{cursor:pointer;font-weight:650}.status{font-size:13px;min-height:24px}.source-list{font-size:14px}.pill{display:inline-block;margin-right:7px;padding:3px 9px;background:#e5eff1;border-radius:20px;font-size:13px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #c77723;outline-offset:4px}@media(max-width:700px){header{padding:24px 18px 12px}main{padding:0 12px 25px}.section{padding:22px 16px}.toc,.objectives{grid-template-columns:1fr}pre{font-size:12px;padding:14px}h2{font-size:24px}}@media print{body{background:white;font-size:11pt}header,main,footer{max-width:none;padding:0}nav,button,.status{display:none}.section{border:0;border-radius:0;padding:10px 0;margin:10px 0}.task{break-before:page}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#102a3b;background:#f0f3f5;font-size:9pt}figure{break-inside:avoid}h2,h3{break-after:avoid}a{color:inherit}details{display:block}}
+</style></head><body>
+<header><a href="../../README.md">Computer Science Labs</a><p class="eyebrow">Deep Learning and CNN · Lab 10 · Quiz</p><h1>Evaluating Image Classifiers</h1><nav aria-label="Lab files"><a href="material.html">Material</a><a href="practice.html">Practice</a><a href="quiz-practice.html" aria-current="page">Quiz</a></nav><div id="copy-status" class="status" role="status" aria-live="polite"></div></header><main><section class="section"><p>Choose one answer for questions 1–6. Write Python code for questions 7–8.</p><article class="quizitem" id="q1"><h2>1. A confusion matrix uses true classes as rows. Which total is the denominator for cup recall?</h2><ol class="options"><li>The total of the cup column.</li><li>The total number of model parameters.</li><li>The total of the cup row.</li><li>Only the cup diagonal cell.</li></ol></article><article class="quizitem" id="q2"><h2>2. A model never predicts bottle on a test set containing bottles. What should accompany a reported zero bottle precision under the worksheet convention?</h2><ol class="options"><li>A claim that all future bottle predictions must be wrong.</li><li>A replacement precision of one without explanation.</li><li>The fact that the predicted-bottle denominator is zero.</li><li>A claim that there were no true bottles.</li></ol></article><article class="quizitem" id="q3"><h2>3. A team raises its review threshold after seeing final-test mistakes, then calls the revised threshold independently tested on the same data. What is the problem?</h2><ol class="options"><li>Confusion matrices require equal class counts.</li><li>Confidence values cannot be compared numerically.</li><li>The threshold must always be zero.</li><li>The test evidence was used to choose the revised policy.</li></ol></article><article class="quizitem" id="q4"><h2>4. A policy accepts no test examples. Which report is accurate?</h2><ol class="options"><li>Coverage zero and accepted accuracy undefined.</li><li>Coverage zero and accepted accuracy one.</li><li>Coverage one and accepted accuracy zero.</li><li>Coverage one and accepted accuracy one.</li></ol></article><article class="quizitem" id="q5"><h2>5. A confidence bin contains two examples and both are correct. What is justified?</h2><ol class="options"><li>The other bins must also have perfect correctness.</li><li>Its observed correctness is two out of two, with very little evidence.</li><li>The model is proven perfectly calibrated everywhere.</li><li>Every future example in the bin is guaranteed correct.</li></ol></article><article class="quizitem" id="q6"><h2>6. Two reports share the same overall accuracy but different confusion matrices. Why inspect the matrices?</h2><ol class="options"><li>They can reveal different directions and class concentrations of errors.</li><li>Accuracy must have been computed incorrectly.</li><li>Confusion matrices prove deployment safety.</li><li>The matrices eliminate the need for true labels.</li></ol></article><details><summary>Shared Python setup</summary><p>Run this once in a fresh notebook before each activity. Complete and run one activity at a time.</p><p>Run setup once, then run each teaching task in order. Practice and coding-quiz references are independent after setup; drawn data are created locally.</p><div class="codewrap"><div class="codebar"><span>Python · shared setup</span><button type="button" data-copy="setup-code">Copy code</button></div><pre><code id="setup-code">import tensorflow as tf
+import keras
+import numpy as np
+import matplotlib.pyplot as plt
+keras.utils.set_random_seed(110)
+rng = np.random.default_rng(110)
+# Locally drawn object icons, not photographs; colors vary independently of class.
+class_names = np.array([&#x27;plate&#x27;, &#x27;cup&#x27;, &#x27;bottle&#x27;])
+def draw_object(label, generator):
+    yy, xx = np.mgrid[:24, :24]
+    if label == 0:
+        radius = np.sqrt((xx - 12) ** 2 + (yy - 12) ** 2)
+        mask = (radius &gt;= 5) &amp; (radius &lt;= 7)
+    elif label == 1:
+        mask = (yy &gt;= 8) &amp; (yy &lt;= 17) &amp; (xx &gt;= 6) &amp; (xx &lt;= 15)
+        mask &amp;= ~((yy &lt; 14) &amp; (xx &gt;= 8) &amp; (xx &lt;= 13))
+        handle = (xx - 16) ** 2 + (yy - 11) ** 2
+        mask |= (handle &lt;= 9) &amp; (handle &gt;= 4) &amp; (xx &gt;= 15)
+    else:
+        mask = ((yy &gt;= 8) &amp; (yy &lt;= 20) &amp; (xx &gt;= 9) &amp; (xx &lt;= 15))
+        mask |= (yy &gt;= 3) &amp; (yy &lt;= 8) &amp; (xx &gt;= 11) &amp; (xx &lt;= 13)
+    mask = np.roll(mask, tuple(generator.integers(-2, 3, 2)), axis=(0, 1))
+    color = generator.uniform(0.5, 0.95, 3)
+    background = generator.uniform(0.02, 0.10)
+    picture = background + mask[:, :, None] * color + generator.normal(0, 0.015, (24, 24, 3))
+    return np.clip(picture, 0, 1).astype(&#x27;float32&#x27;)
+labels = np.repeat(np.arange(3, dtype=&#x27;int32&#x27;), 60)
+images = np.stack([draw_object(int(label), rng) for label in labels])
+train_ids, val_ids, test_ids = [], [], []
+for label in range(3):
+    ids = rng.permutation(np.flatnonzero(labels == label))
+    train_ids.extend(ids[:40])
+    val_ids.extend(ids[40:50])
+    test_ids.extend(ids[50:])
+train_ids = rng.permutation(np.array(train_ids))
+val_ids = rng.permutation(np.array(val_ids))
+test_ids = rng.permutation(np.array(test_ids))
+x_train, y_train = images[train_ids], labels[train_ids]
+x_val, y_val = images[val_ids], labels[val_ids]
+x_test, y_test = images[test_ids], labels[test_ids]
+# A review rule fixed before the final test evaluation.
+review_threshold = 0.60
+# Independent, supplied probability reports for practice and quiz calculations.
+example_true = np.array([0, 0, 1, 1, 2, 2, 2, 0], dtype=&#x27;int32&#x27;)
+example_probs = np.array([
+    [0.80, 0.10, 0.10], [0.20, 0.60, 0.20],
+    [0.10, 0.70, 0.20], [0.40, 0.35, 0.25],
+    [0.10, 0.20, 0.70], [0.10, 0.60, 0.30],
+    [0.20, 0.30, 0.50], [0.55, 0.25, 0.20]
+], dtype=&#x27;float32&#x27;)
+
+def batches(x, y, batch_size=16, shuffle=False):
+    ds = tf.data.Dataset.from_tensor_slices((x, y))
+    if shuffle:
+        ds = ds.shuffle(len(x), seed=123, reshuffle_each_iteration=True)
+    options = tf.data.Options()
+    options.threading.private_threadpool_size = 1
+    options.threading.max_intra_op_parallelism = 1
+    return ds.batch(batch_size).with_options(options)</code></pre></div></details><article class="quizitem" id="q7"><h2>7. For the setup example reports, define groups as [&quot;bright&quot;,&quot;bright&quot;,&quot;dim&quot;,&quot;dim&quot;,&quot;bright&quot;,&quot;bright&quot;,&quot;dim&quot;,&quot;dim&quot;]. Store group_counts and group_accuracy as dictionaries for bright and dim, using row-wise argmax predictions and true labels. Print both dictionaries. Do not train a model or treat these supplied groups as causal evidence.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q7-code">Copy code</button></div><pre><code id="q7-code"># Write a complete solution using the setup imports and data.</code></pre></div></article><article class="quizitem" id="q8"><h2>8. Use the setup example reports but create a confusion matrix cm4 with four named class slots (IDs 0–3). No examples or predictions belong to ID 3. Store support and recall arrays of length four, writing zero for zero-support recall. Store present_macro as mean recall over only classes with support &gt; 0. Print support, recall and present_macro.</h2><div class="codewrap"><div class="codebar"><span>Python · write your code</span><button type="button" data-copy="q8-code">Copy code</button></div><pre><code id="q8-code"># Write a complete solution using the setup imports and data.</code></pre></div></article></section></main><footer>Mohammad Alshurbaji · Deep Learning and CNN · Lab 10</footer><script>document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const source=document.getElementById(b.dataset.copy);try{await navigator.clipboard.writeText(source.textContent);b.textContent='Copied';setTimeout(()=>b.textContent='Copy code',1400)}catch(_){const r=document.createRange();r.selectNodeContents(source);const s=window.getSelection();s.removeAllRanges();s.addRange(r);document.getElementById('copy-status').textContent='Code selected. Press Ctrl+C (or Command+C) to copy.'}});</script></body></html>
