@@ -1,16 +1,27 @@
-# Computer Science Labs
+I’m **Mohammad Alshurbaji**, a researcher and instructor sharing practice materials from computer engineering labs I’ve taught at Khalifa University (KU), the American University of Sharjah (AUS), and Yarmouk University (YU).
 
-I'm **Mohammad Alshurbaji**, a researcher and instructor. Here I share learning materials, practical exercises, and quizzes for the computer science labs I have taught.
+Explore practice labs in:
 
-Explore practice labs in data science, programming, and digital systems, alongside full introductory courses in Arduino, MATLAB, image processing, and deep learning.
+- **Data Science & AI**
+- **Python Programming**
+- **C Programming**
+- **C++ Programming**
+- **Digital Systems**
 
-## Start here
+Alongside full introductory courses in:
 
-1. Open the lab you want to practise.
-2. Work through the activities and try your own examples.
-3. Try the practice quiz to check what you have learned.
+- **Arduino**
+- **MATLAB**
+- **Image Processing**
+- **Deep Learning and Convolutional Neural Networks (CNNs)**
+- **Large Language Models (LLMs)**
+  
+Use the learning materials, practical exercises, and quizzes to reinforce classroom concepts, practice independently, and build skills for your own projects.
 
-# Data Science and AI
+⭐ **If you find this repository useful, give it a star!** ⭐
+
+
+# Data Science & AI
 
 | Lab | Topics |
 | --- | --- |
@@ -171,7 +182,7 @@ Follow the labs in order and finish with an image-classification project that br
 | [14](Deep%20Learning%20and%20CNN/lab-14-image-segmentation/) | pixel masks, paired transforms, nearest-neighbor resizing, fully convolutional models, foreground IoU, threshold selection |
 | [15](Deep%20Learning%20and%20CNN/lab-15-image-classification-project/) | project contracts, training-only normalization, baselines, model selection, metadata, save/reload, final test reporting |
 
-# LLMs
+# Large Language Models (LLMs)
 
 This full introductory LLMs course takes you from predicting the next token to building, training, adapting and evaluating a GPT-style language model. Across 20 labs, explore tokenization, embeddings, attention, transformer blocks, pretraining, text classification and instruction fine-tuning through detailed lessons, eight guided tasks per lab, and visual explanations. Bring the pieces together in a final project with reproducible training and thoughtful evaluation.
 
